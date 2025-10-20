@@ -52,7 +52,7 @@ Tạo file có tên .env trong thư mục backend với nội dung sau và đi�
 
 ```bash
 # Cấu hình Bảo mật và Server
-JWT_SECRET="your_jwt_secret_key"
+JWT_SECRET=your_jwt_secret_key
 PORT=5000
 
 # Cấu hình Email (Sử dụng cho các chức năng như đặt lại mật khẩu)
