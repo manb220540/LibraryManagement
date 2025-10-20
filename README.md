@@ -56,8 +56,8 @@ JWT_SECRET="your_jwt_secret_key"
 PORT=5000
 
 # Cấu hình Email (Sử dụng cho các chức năng như đặt lại mật khẩu)
-EMAIL_USER="<Địa chỉ Email của bạn>"
-EMAIL_PASS="<Mật khẩu ứng dụng/App Password của Email>"
+EMAIL_USER=<Địa chỉ Email của bạn>
+EMAIL_PASS=<Mật khẩu ứng dụng/App Password của Email>
 EMAIL_SERVICE=gmail
 EMAIL_PORT=587
 EMAIL_HOST=smtp.gmail.com
