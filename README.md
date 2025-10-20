@@ -1,6 +1,6 @@
 # Library Management System
 
-Đây là dự án Quản lý Thư viện được phát triển với **CSDL (MySQL)** **Backend (Node.js/Express)** và **Frontend (Vue.js)**.
+Đây là dự án Quản lý Thư viện được phát triển với **CSDL (MySQL)**,**Backend (Node.js/Express)** và **Frontend (Vue.js)**.
 
 ---
 
