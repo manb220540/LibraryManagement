@@ -2875,3 +2875,121 @@
 {"level":"info","message":"User authenticated","timestamp":"2025-10-16T06:14:35.895Z","userId":1,"userType":"staff"}
 {"level":"info","message":"Fetching all categories","timestamp":"2025-10-16T06:14:35.895Z"}
 {"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-16T06:14:35.896Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T09:55:14.617Z","userId":1}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T09:55:14.698Z","userId":1,"userType":"reader"}
+{"level":"info","maDocGia":1,"message":"Fetching borrow history for reader","timestamp":"2025-10-16T09:55:14.698Z"}
+{"count":4,"level":"info","maDocGia":1,"message":"Borrow history fetched successfully","timestamp":"2025-10-16T09:55:14.708Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T09:55:17.322Z","userId":1}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-16T09:55:17.324Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-16T09:55:17.327Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-16T09:55:17.330Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T09:55:17.334Z","userId":1,"userType":"reader"}
+{"level":"info","maDocGia":1,"message":"Fetching borrow history for reader","timestamp":"2025-10-16T09:55:17.335Z"}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-16T09:55:17.355Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-16T09:55:17.357Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-16T09:55:17.360Z"}
+{"count":4,"level":"info","maDocGia":1,"message":"Borrow history fetched successfully","timestamp":"2025-10-16T09:55:17.363Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T09:56:00.455Z","userId":1}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T09:56:00.477Z","userId":1,"userType":"reader"}
+{"level":"info","maDocGia":1,"message":"Fetching borrow history for reader","timestamp":"2025-10-16T09:56:00.477Z"}
+{"count":4,"level":"info","maDocGia":1,"message":"Borrow history fetched successfully","timestamp":"2025-10-16T09:56:00.490Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-16T09:56:01.857Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T09:56:01.860Z","userId":1}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-16T09:56:01.867Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T09:56:01.869Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-16T09:56:01.870Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-16T09:56:01.876Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-16T09:56:03.009Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T09:56:03.011Z","userId":1}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-16T09:56:03.017Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-16T09:56:03.019Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-16T09:56:03.022Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T09:56:03.023Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-16T09:56:03.023Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-16T09:56:03.026Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-16T09:56:03.027Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-16T09:56:03.028Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-16T09:56:04.872Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-16T09:56:04.874Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T09:56:04.875Z","userId":1}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-16T09:56:04.878Z"}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-16T09:56:04.881Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-16T09:56:04.883Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T09:56:04.892Z","userId":1,"userType":"reader"}
+{"level":"info","maDocGia":1,"message":"Fetching borrow history for reader","timestamp":"2025-10-16T09:56:04.892Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-16T09:56:04.894Z"}
+{"count":4,"level":"info","maDocGia":1,"message":"Borrow history fetched successfully","timestamp":"2025-10-16T09:56:04.899Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-16T09:56:25.392Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-16T09:56:25.394Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-16T09:56:25.401Z"}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-16T09:56:25.405Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-16T09:56:26.470Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-16T09:56:26.472Z"}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-16T09:56:26.473Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-16T09:56:26.475Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-16T09:56:26.477Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T09:56:26.479Z","userId":1}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T09:56:26.481Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-16T09:56:26.481Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-16T09:56:26.482Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-16T09:56:26.483Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-16T09:59:23.372Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-16T09:59:23.391Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-16T09:59:23.413Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T09:59:23.417Z","userId":1}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T09:59:24.035Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-16T09:59:24.035Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-16T09:59:24.039Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-16T09:59:24.042Z"}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-16T09:59:24.045Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-16T09:59:24.047Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-16T13:53:43.622Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-16T13:53:43.645Z","userId":1}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-16T13:53:43.647Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-16T13:53:43.649Z"}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-16T13:53:43.803Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-16T13:53:43.805Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-16T13:53:43.805Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-16T13:53:43.806Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-16T13:53:43.806Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-16T13:53:43.824Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-17T00:45:51.640Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-17T00:45:51.666Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-17T00:45:51.670Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-17T00:45:51.688Z","userId":1}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-17T00:45:51.814Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-17T00:45:51.815Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-17T00:45:51.815Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-17T00:45:51.830Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-17T00:45:51.830Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-17T00:45:51.839Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-17T14:33:02.206Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-17T14:33:02.219Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-17T14:33:02.229Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-17T14:33:02.236Z","userId":1}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-17T14:33:02.517Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-17T14:33:02.518Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-17T14:33:02.519Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-17T14:33:02.519Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-17T14:33:02.521Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-17T14:33:02.527Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-18T07:45:43.208Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-18T07:45:43.221Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-18T07:45:43.249Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-18T07:45:43.264Z","userId":1}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-18T07:45:43.390Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-18T07:45:43.391Z"}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-18T07:45:43.393Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-18T07:45:43.395Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-18T07:45:43.395Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-18T07:45:43.403Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-10-18T09:29:27.188Z"}
+{"level":"info","message":"Fetching all publishers","timestamp":"2025-10-18T09:29:27.205Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-10-18T09:29:27.224Z","userId":1}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-10-18T09:29:27.228Z"}
+{"count":2,"level":"info","message":"Books fetched","timestamp":"2025-10-18T09:29:27.625Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-10-18T09:29:27.628Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-10-18T09:29:27.628Z"}
+{"count":1,"level":"info","message":"Publishers fetched","timestamp":"2025-10-18T09:29:27.632Z"}
+{"count":1,"level":"info","message":"Authors fetched","timestamp":"2025-10-18T09:29:27.633Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-10-18T09:29:27.638Z"}
