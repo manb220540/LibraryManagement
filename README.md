@@ -153,6 +153,15 @@ npm run dev
 
 Ứng dụng sẽ tự động mở trong trình duyệt của bạn (thường là http://localhost:5173).
 
+### 9.(Mở rộng ) Tạo tài khoản Admin mặc định
+
+Mở một Terminal mới, chuyển đến thư mục backend và khởi động script:
+
+```bash
+cd backend
+npm run seed-admin
+```
+
 ## Hoàn tất
 
 Bạn đã cài đặt và chạy thành công dự án Library Management System!
