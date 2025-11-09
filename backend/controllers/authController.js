@@ -1,12 +1,15 @@
 // backend/controllers/authController.js
 
 // Import các thư viện và model cần thiết
-const jwt = require('jsonwebtoken'); // Thư viện để tạo và xác thực JWT
-const bcrypt = require('bcryptjs'); // Thư viện để mã hóa và so sánh mật khẩu
-const { sequelize, NhanVien, DocGia } = require('../models'); // Import model NhanVien và DocGia từ Sequelize
-const { generateOTP, sendVerificationEmail } = require('../config/email'); // Import hàm tạo OTP và gửi email
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const { sequelize, NhanVien, DocGia } = require('../models');
+const { generateOTP, sendVerificationEmail } = require('../config/email');
+const logger = require('../src/logger'); // ✅ Thêm logger
 
-// Hàm tạo JWT token (định nghĩa ở cấp độ module)
+// -------------------------
+// Hàm tạo JWT token
+// -------------------------
 const generateToken = (user, type) => {
   const payload = {
     id: type === 'admin' ? user.MSNV : user.maDocGia,
@@ -17,180 +20,194 @@ const generateToken = (user, type) => {
   return jwt.sign(payload, secret, { expiresIn: '7d' });
 };
 
-// Đăng nhập dành cho nhân viên (admin)
+// -------------------------
+// Đăng nhập dành cho nhân viên (Admin)
+// -------------------------
 const loginStaff = async (req, res) => {
   try {
     const { hoTenNV, password } = req.body;
+    logger.info(`Đăng nhập nhân viên: ${hoTenNV}`);
 
-    // Tìm nhân viên theo hoTenNV
     const nhanvien = await NhanVien.findOne({ where: { hoTenNV } });
     if (!nhanvien) {
+      logger.warn(`Tên nhân viên không tồn tại: ${hoTenNV}`);
       return res.status(401).json({ error: 'Tên nhân viên không tồn tại' });
     }
 
-    // Kiểm tra mật khẩu
     const isMatch = await bcrypt.compare(password, nhanvien.password);
     if (!isMatch) {
+      logger.warn(`Sai mật khẩu cho nhân viên: ${hoTenNV}`);
       return res.status(401).json({ error: 'Mật khẩu không đúng' });
     }
 
-    // Tạo token
     const token = generateToken(nhanvien, 'admin');
-
+    logger.info(`Nhân viên đăng nhập thành công: ${hoTenNV}`);
     res.json({ message: 'Đăng nhập thành công', nhanvien, token });
   } catch (error) {
+    logger.error(`Lỗi đăng nhập nhân viên: ${error.message}`);
     res.status(400).json({ error: error.message });
   }
 };
 
-// Đăng nhập cho độc giả
+// -------------------------
+// Đăng nhập dành cho độc giả
+// -------------------------
 const loginReader = async (req, res) => {
   try {
     const { email, password } = req.body;
+    logger.info(`Đăng nhập độc giả: ${email}`);
+
     const docgia = await DocGia.findOne({ where: { email } });
-    
     if (!docgia) {
+      logger.warn(`Email độc giả không tồn tại: ${email}`);
       return res.status(400).send({ error: 'Invalid login credentials' });
     }
-    
+
     const isMatch = await bcrypt.compare(password, docgia.password);
     if (!isMatch) {
+      logger.warn(`Sai mật khẩu cho độc giả: ${email}`);
       return res.status(400).send({ error: 'Invalid login credentials' });
     }
-    
+
     const [results] = await sequelize.query('CALL sp_check_reader_status(:maDocGia)', {
       replacements: { maDocGia: docgia.maDocGia },
       type: sequelize.QueryTypes.SELECT
     });
-    const hasPendingLoan = results[0]?.hasPendingLoan || 0;
-    
+
+    const hasPendingLoan = results?.[0]?.hasPendingLoan || 0;
     if (hasPendingLoan > 0) {
+      logger.warn(`Độc giả ${email} có yêu cầu mượn sách đang chờ.`);
       return res.status(403).send({ error: 'Cannot login. You have pending borrow requests.' });
     }
-    
+
     const token = generateToken(docgia, 'reader');
+    logger.info(`Độc giả đăng nhập thành công: ${email}`);
     res.send({ docgia, token });
   } catch (error) {
+    logger.error(`Lỗi đăng nhập độc giả: ${error.message}`);
     res.status(400).send({ error: error.message || 'Đăng nhập thất bại' });
   }
 };
 
+// -------------------------
 // Đăng ký tài khoản độc giả
+// -------------------------
 const registerReader = async (req, res) => {
   try {
     const { hoLot, ten, ngaySinh, phai, diaChi, dienThoai, email, password } = req.body;
+    logger.info(`Đăng ký độc giả mới: ${email}`);
 
-    // Kiểm tra email đã tồn tại chưa
     const existingReader = await DocGia.findOne({ where: { email } });
     if (existingReader) {
+      logger.warn(`Email đã tồn tại: ${email}`);
       return res.status(400).json({ error: 'Email đã tồn tại' });
     }
 
-    // Mã hóa mật khẩu
     const hashedPassword = await bcrypt.hash(password, 8);
-
-    // Tạo độc giả mới (maDocGia tự động tạo bởi autoIncrement)
     const docgia = await DocGia.create({
-      hoLot,
-      ten,
-      ngaySinh,
-      phai,
-      diaChi,
-      dienThoai,
-      email,
-      password: hashedPassword,
+      hoLot, ten, ngaySinh, phai, diaChi, dienThoai, email, password: hashedPassword
     });
 
-    // Tạo token
     const token = generateToken(docgia, 'reader');
-
+    logger.info(`Đăng ký độc giả thành công: ${email}`);
     res.status(201).json({ message: 'Đăng ký thành công', docgia, token });
   } catch (error) {
+    logger.error(`Lỗi đăng ký độc giả: ${error.message}`);
     res.status(400).json({ error: error.message });
   }
 };
 
-// Gửi yêu cầu đổi mật khẩu
+// -------------------------
+// Gửi yêu cầu đổi mật khẩu (bằng OTP email)
+// -------------------------
 const requestPasswordReset = async (req, res) => {
   try {
-    const { email } = req.body; // Lấy email từ body
-    // Tìm độc giả theo email
+    const { email } = req.body;
+    logger.info(`Yêu cầu reset mật khẩu: ${email}`);
+
     const docgia = await DocGia.findOne({ where: { email } });
-  
-    // Kiểm tra nếu không tìm thấy độc giả
     if (!docgia) {
+      logger.warn(`Không tìm thấy email: ${email}`);
       return res.status(404).send({ error: 'Email not found' });
     }
-  
-    // Tạo OTP và lưu vào model độc giả
+
     const otp = generateOTP();
-    docgia.otp = otp; // Lưu OTP
-    docgia.otpExpiry = Date.now() + 10 * 60 * 1000; // Thiết lập thời gian hết hạn OTP (10 phút)
+    docgia.otp = otp;
+    docgia.otpExpiry = Date.now() + 10 * 60 * 1000;
     await docgia.save();
-  
-    // Gửi email chứa OTP
+
     await sendVerificationEmail(email, otp);
-  
-    // Trả về thông báo gửi email thành công
+    logger.info(`Gửi OTP thành công tới: ${email}`);
     res.send({ message: 'Verification email sent. Please check your inbox.' });
   } catch (error) {
-    // Xử lý lỗi, trả về mã trạng thái 500
+    logger.error(`Lỗi gửi OTP reset mật khẩu: ${error.message}`);
     res.status(500).send({ error: error.message || 'Failed to request password reset' });
   }
 };
 
+// -------------------------
 // Xác nhận OTP và đổi mật khẩu
+// -------------------------
 const confirmPasswordReset = async (req, res) => {
   try {
-    const { email, otp, newPassword } = req.body; // Lấy email, OTP và mật khẩu mới từ body
-    // Tìm độc giả theo email
+    const { email, otp, newPassword } = req.body;
+    logger.info(`Xác nhận đổi mật khẩu cho: ${email}`);
+
     const docgia = await DocGia.findOne({ where: { email } });
-  
-    // Kiểm tra nếu không tìm thấy độc giả
     if (!docgia) {
+      logger.warn(`Email không tồn tại khi xác nhận OTP: ${email}`);
       return res.status(404).send({ error: 'Email not found' });
     }
-    
-    // Kiểm tra OTP và thời gian hết hạn
+
     if (docgia.otp !== otp) {
+      logger.warn(`OTP không hợp lệ cho ${email}`);
       return res.status(400).send({ error: 'Invalid OTP' });
     }
+
     if (Date.now() > docgia.otpExpiry) {
+      logger.warn(`OTP đã hết hạn cho ${email}`);
       return res.status(400).send({ error: 'OTP has expired' });
     }
-  
-    // Cập nhật mật khẩu mới (mã hóa trước khi lưu)
+
     docgia.password = await bcrypt.hash(newPassword, 8);
-    // Xóa OTP và thời gian hết hạn
     docgia.otp = null;
     docgia.otpExpiry = null;
     await docgia.save();
-  
-    // Trả về thông báo đổi mật khẩu thành công
+
+    logger.info(`Đổi mật khẩu thành công cho ${email}`);
     res.send({ message: 'Password updated successfully. Redirecting to login.' });
   } catch (error) {
-    // Xử lý lỗi, trả về mã trạng thái 500
+    logger.error(`Lỗi đổi mật khẩu cho ${email}: ${error.message}`);
     res.status(500).send({ error: error.message || 'Failed to update password' });
   }
 };
 
+// -------------------------
 // Kiểm tra trạng thái độc giả
+// -------------------------
 const checkReaderStatus = async (req, res) => {
   try {
-    const { maDocGia } = req.params; // Lấy maDocGia từ URL
+    const { maDocGia } = req.params;
+    logger.info(`Kiểm tra trạng thái độc giả: ${maDocGia}`);
+
     const [results] = await sequelize.query('CALL sp_check_reader_status(:maDocGia, @hasPendingLoan)', {
-      replacements: { maDocGia: parseInt(maDocGia) }, // Chuyển sang INT
+      replacements: { maDocGia: parseInt(maDocGia) },
       type: sequelize.QueryTypes.SELECT
     });
-    const hasPendingLoan = results[0]?.hasPendingLoan || 0;
+
+    const hasPendingLoan = results?.[0]?.hasPendingLoan || 0;
+    logger.info(`Trạng thái độc giả ${maDocGia}: ${hasPendingLoan ? 'Có yêu cầu mượn sách' : 'Không có yêu cầu'}`);
 
     res.send({ maDocGia, hasPendingLoan });
   } catch (error) {
+    logger.error(`Lỗi kiểm tra trạng thái độc giả ${req.params.maDocGia}: ${error.message}`);
     res.status(400).send({ error: error.message || 'Failed to check reader status' });
   }
 };
 
-// Xuất các hàm để sử dụng trong routes
+// -------------------------
+// Xuất module
+// -------------------------
 module.exports = {
   loginStaff,
   loginReader,

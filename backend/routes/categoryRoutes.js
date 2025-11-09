@@ -8,7 +8,11 @@ const {
   createCategory,
   updateCategory,
   deleteCategory,
+  searchCategoriesAdvanced,
 } = require('../controllers/categoryController');
+
+// Routes công khai
+router.get('/search', searchCategoriesAdvanced);
 
 // Routes cho admin (yêu cầu quyền admin)
 router.get('/', auth, getAllCategories);

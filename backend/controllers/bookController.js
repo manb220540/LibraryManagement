@@ -187,6 +187,69 @@ const getBookById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const getBooksAdvanced = async (req, res) => {
+  try {
+    const {
+      tenSach = null,
+      maSach = null,
+      maTacGia = null,
+      maNXB = null,
+      maTheLoai = null,
+      namXuatBanMin = null,
+      namXuatBanMax = null,
+      nguonGoc = null,
+      sortBy = 'tenSach',
+      order = 'ASC',
+      limit = 20,
+      offset = 0
+    } = req.query;
+
+    logger.info('Calling sp_tim_kiem_sach_nang_cao', req.query);
+
+    const [results, metadata] = await sequelize.query(
+      `CALL sp_tim_kiem_sach_nang_cao(
+        :tenSach, :maSach, :maTacGia, :maNXB, :maTheLoai,
+        :namXuatBanMin, :namXuatBanMax, :nguonGoc,
+        :sortBy, :order, :limit, :offset, @total
+      )`,
+      {
+        replacements: {
+          tenSach: tenSach || null,
+          maSach: maSach ? parseInt(maSach) : null,
+          maTacGia: maTacGia ? parseInt(maTacGia) : null,
+          maNXB: maNXB ? parseInt(maNXB) : null,
+          maTheLoai: maTheLoai ? parseInt(maTheLoai) : null,
+          namXuatBanMin: namXuatBanMin ? parseInt(namXuatBanMin) : null,
+          namXuatBanMax: namXuatBanMax ? parseInt(namXuatBanMax) : null,
+          nguonGoc: nguonGoc || null,
+          sortBy: sortBy || 'tenSach',
+          order: order.toUpperCase() === 'DESC' ? 'DESC' : 'ASC',
+          limit: parseInt(limit),
+          offset: parseInt(offset)
+        },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );
+
+    // Lấy tổng số bản ghi từ biến OUT
+    const [[{ total }]] = await sequelize.query('SELECT @total AS total');
+
+    res.json({
+      data: results,
+      total: total || 0,
+      limit: parseInt(limit),
+      offset: parseInt(offset)
+    });
+
+  } catch (error) {
+    logger.error('Error in getBooksAdvanced (procedure)', {
+      error: error.message,
+      stack: error.stack,
+      query: req.query
+    });
+    res.status(500).json({ message: 'Lỗi tìm kiếm sách' });
+  }
+};
 
 module.exports = {
   getAllBooks,
@@ -194,4 +257,5 @@ module.exports = {
   updateBook,
   deleteBook,
   getBookById,
+  getBooksAdvanced
 };

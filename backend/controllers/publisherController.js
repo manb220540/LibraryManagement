@@ -1,11 +1,43 @@
 const logger = require('../src/logger');
-const { sequelize, NhaXuatBan } = require('../models');
+const { sequelize, Sach, TacGia, NhaXuatBan, TheLoai } = require('../models');
 
 // Lấy danh sách tất cả nhà xuất bản
 const getAllPublishers = async (req, res) => {
   try {
-    logger.info('Fetching all publishers');
-    const publishers = await NhaXuatBan.findAll();
+    logger.info('Fetching all publishers with books');
+
+    const [results] = await sequelize.query(`
+      SELECT 
+        nxb.*,
+        COALESCE((
+          SELECT JSON_ARRAYAGG(
+            JSON_OBJECT(
+              'maSach', s.maSach,
+              'tenSach', s.tenSach,
+              'namXuatBan', s.namXuatBan,
+              'soLuongHienCo', s.soLuongHienCo,
+              'donGia', s.donGia
+            )
+          )
+          FROM Sach s 
+          WHERE s.maNXB = nxb.maNXB
+        ), JSON_ARRAY()) AS Sach,
+        (
+          SELECT COUNT(*) 
+          FROM Sach s 
+          WHERE s.maNXB = nxb.maNXB
+        ) AS soLuongSach
+      FROM NhaXuatBan nxb
+      ORDER BY nxb.tenNXB
+    `);
+
+    const publishers = results.map(pub => ({
+      ...pub,
+      Sach: typeof pub.Sach === 'string' ? JSON.parse(pub.Sach) : pub.Sach, // an toàn cho cả hai trường hợp
+      soLuongSach: parseInt(pub.soLuongSach) || 0
+    }));
+
+
     logger.info('Publishers fetched', { count: publishers.length });
     res.json(publishers);
   } catch (error) {
@@ -115,6 +147,114 @@ const getPublisherById = async (req, res) => {
   }
 };
 
+// Tìm kiếm nhà xuất bản nâng cao
+const searchPublishersAdvanced = async (req, res) => {
+  try {
+    const {
+      tenNXB,
+      maNXB,
+      diaChi,
+      namMin,
+      namMax,
+      sortBy = 'tenNXB',
+      order = 'ASC',
+      limit = 12,
+      page = 1
+    } = req.query;
+
+    const offset = (page - 1) * limit;
+
+    logger.info('Searching publishers advanced', req.query);
+
+    // ---- 1. Gọi procedure để lấy @total ----
+    await sequelize.query(
+      `CALL sp_tim_kiem_nha_xuat_ban_nang_cao(
+        :tenNXB, :maNXB, :diaChi, :namMin, :namMax,
+        :sortBy, :order, :limit, :offset, @total
+      )`,
+      {
+        replacements: {
+          tenNXB: tenNXB || null,
+          maNXB: maNXB ? parseInt(maNXB) : null,
+          diaChi: diaChi || null,
+          namMin: namMin ? parseInt(namMin) : null,
+          namMax: namMax ? parseInt(namMax) : null,
+          sortBy,
+          order: order.toUpperCase(),
+          limit: parseInt(limit),
+          offset: parseInt(offset)
+        },
+        type: sequelize.QueryTypes.RAW
+      }
+    );
+
+    // ---- 2. Lấy @total ----
+    const [[{ total }]] = await sequelize.query('SELECT @total AS total');
+
+    // ---- 3. Lấy dữ liệu (raw query giống getAllPublishers) ----
+    // Tạo điều kiện WHERE
+const where = [];
+if (tenNXB) where.push(`nxb.tenNXB LIKE '%${tenNXB}%'`);
+if (maNXB) where.push(`nxb.maNXB = ${maNXB}`);
+if (diaChi) where.push(`nxb.diaChi LIKE '%${diaChi}%'`);
+if (namMin) where.push(`(s.namXuatBan >= ${namMin} OR s.namXuatBan IS NULL)`);
+if (namMax) where.push(`(s.namXuatBan <= ${namMax} OR s.namXuatBan IS NULL)`);
+
+const whereClause = where.length ? 'WHERE ' + where.join(' AND ') : '';
+
+const sql = `
+  SELECT 
+    nxb.*,
+    COALESCE((
+      SELECT JSON_ARRAYAGG(
+        JSON_OBJECT(
+          'maSach', s.maSach,
+          'tenSach', s.tenSach,
+          'namXuatBan', s.namXuatBan,
+          'soLuongHienCo', s.soLuongHienCo,
+          'donGia', s.donGia
+        )
+      )
+      FROM Sach s 
+      WHERE s.maNXB = nxb.maNXB
+    ), JSON_ARRAY()) AS Sach,
+    (
+      SELECT COUNT(*) 
+      FROM Sach s 
+      WHERE s.maNXB = nxb.maNXB
+    ) AS soLuongSach
+  FROM NhaXuatBan nxb
+  LEFT JOIN Sach s ON nxb.maNXB = s.maNXB
+  ${whereClause}
+  GROUP BY nxb.maNXB
+  ORDER BY nxb.${sortBy} ${order}
+  LIMIT ${limit} OFFSET ${offset};
+`;
+
+
+    const [data] = await sequelize.query(sql);
+
+    const publishers = data.map(pub => ({
+      ...pub,
+      Sach: pub.Sach ? JSON.parse(pub.Sach) : [],
+      soLuongSach: parseInt(pub.soLuongSach) || 0
+    }));
+
+    res.json({
+      data: publishers,
+      pagination: {
+        total: total || 0,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        totalPages: Math.ceil((total || 0) / limit)
+      }
+    });
+  } catch (error) {
+    logger.error('Search publishers advanced error', { error: error.message });
+    res.status(500).json({ message: 'Lỗi tìm kiếm nhà xuất bản' });
+  }
+};
+
 // Xuất các hàm để sử dụng trong file routes
 module.exports = {
   getAllPublishers,
@@ -122,4 +262,5 @@ module.exports = {
   updatePublisher,
   deletePublisher,
   getPublisherById,
+  searchPublishersAdvanced,
 };

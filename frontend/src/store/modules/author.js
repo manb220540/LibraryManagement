@@ -41,6 +41,21 @@ export default {
         commit('SET_LOADING', false);
       }
     },
+    // store/modules/author.js
+    async searchAuthors({ commit }, filters) {
+      try {
+        commit('SET_LOADING', true);
+        const response = await api.get('/tacgia/search', { params: filters });
+        commit('SET_AUTHORS', response.data.data);
+        return response.data.pagination;
+      } catch (error) {
+        commit('SET_ERROR', error.message);
+        throw error;
+      } finally {
+        commit('SET_LOADING', false);
+      }
+    },
+
 
     async createAuthor({ commit }, authorData) {
       try {

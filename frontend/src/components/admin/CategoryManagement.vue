@@ -1,41 +1,52 @@
 <template>
-  <div class="category-management">
+  <div class="category-management container mt-4">
     <LoadingSpinner :show="loading" />
-
-    <!-- Header section -->
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2>Quản lý thể loại</h2>
       <button class="btn btn-primary" @click="showAddModal = true">
         <i class="fas fa-plus"></i> Thêm thể loại mới
       </button>
     </div>
-
-    <!-- Error Alert -->
     <div v-if="error" class="alert alert-danger alert-dismissible fade show" role="alert">
       {{ error }}
       <button type="button" class="btn-close" @click="clearError"></button>
     </div>
-
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            v-model="searchTerm"
-            placeholder="Tìm kiếm theo mã hoặc tên thể loại"
-          >
-          <span class="input-group-text">
-            <i class="fas fa-search"></i>
-          </span>
+    <div class="card shadow-sm mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Tìm kiếm & Lọc thể loại</h5>
+        <button class="btn btn-sm btn-outline-secondary" @click="showAdvancedSearch = !showAdvancedSearch">
+          {{ showAdvancedSearch ? 'Ẩn' : 'Hiện' }} bộ lọc
+        </button>
+      </div>
+      <div class="card-body" v-show="showAdvancedSearch">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Tên thể loại</label>
+            <input type="text" class="form-control" v-model.trim="filters.tenTheLoai" placeholder="Nhập tên thể loại" />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Mã thể loại</label>
+            <input type="number" class="form-control" v-model.number="filters.maTheLoai" placeholder="VD: 1" />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Sắp xếp theo</label>
+            <select class="form-select" v-model="sortBy">
+              <option value="tenTheLoai-asc">Tên thể loại (A-Z)</option>
+              <option value="tenTheLoai-desc">Tên thể loại (Z-A)</option>
+              <option value="maTheLoai-asc">Mã thể loại (tăng dần)</option>
+              <option value="maTheLoai-desc">Mã thể loại (giảm dần)</option>
+            </select>
+          </div>
+          <div class="col-12 text-end mt-3">
+            <button class="btn btn-outline-secondary me-2" @click="resetFilters">Xóa bộ lọc</button>
+            <button class="btn btn-primary" @click="applyFilters">Áp dụng</button> 
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Danh sách thể loại -->
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
+    <div class="table-responsive mb-4">
+      <table class="table table-striped align-middle">
+        <thead class="table-light">
           <tr>
             <th>Mã thể loại</th>
             <th>Tên thể loại</th>
@@ -44,74 +55,62 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-if="!filteredCategories?.length">
-            <td colspan="4" class="text-center">Không có thể loại nào</td>
+          <tr v-if="!categories.length">
+            <td colspan="4" class="text-center text-muted">Không có thể loại nào</td>
           </tr>
-          <tr v-for="category in filteredCategories" :key="category.maTheLoai">
+          <tr v-for="category in categories" :key="category.maTheLoai">
             <td>{{ category.maTheLoai }}</td>
             <td>{{ category.tenTheLoai }}</td>
-            <td>{{ category.soLuongSach || 0 }}</td>
+            <td><span class="badge bg-success">{{ category.Sach?.length || 0 }}</span></td>
             <td>
               <button class="btn btn-sm btn-info me-2" @click="editCategory(category)">
                 <i class="fas fa-edit"></i>
               </button>
-              <button class="btn btn-sm btn-danger" @click="confirmDelete(category)">
+              <button class="btn btn-sm btn-danger me-2" @click="confirmDelete(category)">
                 <i class="fas fa-trash"></i>
+              </button>
+              <button class="btn btn-sm btn-primary" @click="showCategoryBooks(category)">
+                <i class="fas fa-eye"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
-    <!-- Modal thêm/sửa thể loại -->
+    <nav aria-label="Page navigation" class="mb-4" v-if="pagination.total > pagination.limit">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" :class="{ disabled: pagination.page === 1 }">
+          <button class="page-link" @click="changePage(pagination.page - 1)">Trước</button>
+        </li>
+        <li class="page-item disabled">
+          <span class="page-link">Trang {{ pagination.page }} / {{ totalPages }}</span>
+        </li>
+        <li class="page-item" :class="{ disabled: pagination.page === totalPages }">
+          <button class="page-link" @click="changePage(pagination.page + 1)">Sau</button>
+        </li>
+      </ul>
+    </nav>
     <div class="modal" tabindex="-1" :class="{ 'd-block': showAddModal }">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">
-              {{ editingCategory ? 'Sửa thông tin thể loại' : 'Thêm thể loại mới' }}
-            </h5>
+            <h5 class="modal-title">{{ editingCategory ? 'Sửa thể loại' : 'Thêm thể loại mới' }}</h5>
             <button type="button" class="btn-close" @click="closeModal"></button>
           </div>
           <div class="modal-body">
             <form @submit.prevent="handleSubmit" novalidate>
               <div class="mb-3" v-if="editingCategory">
-                <label class="form-label">Mã thể loại <span class="text-danger">*</span></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors.maTheLoai }"
-                  v-model="categoryForm.maTheLoai"
-                  readonly
-                >
-                <div class="invalid-feedback" v-if="errors.maTheLoai">
-                  {{ errors.maTheLoai }}
-                </div>
+                <label class="form-label">Mã thể loại</label>
+                <input type="text" class="form-control" v-model="categoryForm.maTheLoai" readonly />
               </div>
-
               <div class="mb-3">
                 <label class="form-label">Tên thể loại <span class="text-danger">*</span></label>
-                <input
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': errors.tenTheLoai }"
-                  v-model="categoryForm.tenTheLoai"
-                  required
-                  @input="validateField('tenTheLoai')"
-                >
-                <div class="invalid-feedback" v-if="errors.tenTheLoai">
-                  {{ errors.tenTheLoai }}
-                </div>
+                <input type="text" class="form-control" v-model="categoryForm.tenTheLoai" :class="{ 'is-invalid': errors.tenTheLoai }" @input="validateField('tenTheLoai')" required />
+                <div class="invalid-feedback">{{ errors.tenTheLoai }}</div>
               </div>
-
               <div class="text-end">
                 <button type="button" class="btn btn-secondary me-2" @click="closeModal">Hủy</button>
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  :disabled="loading || Object.keys(errors).length > 0"
-                >
+                <button type="submit" class="btn btn-primary" :disabled="loading || Object.keys(errors).length > 0">
                   {{ loading ? 'Đang xử lý...' : (editingCategory ? 'Cập nhật' : 'Thêm mới') }}
                 </button>
               </div>
@@ -120,8 +119,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Modal Xác nhận xóa -->
     <div class="modal" tabindex="-1" :class="{ 'd-block': showDeleteModal }">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -133,229 +130,233 @@
             <p>Bạn có chắc chắn muốn xóa thể loại "<strong>{{ selectedCategory?.tenTheLoai }}</strong>" không?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="closeDeleteModal">Hủy</button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              @click="handleDelete"
-              :disabled="loading"
-            >
-              {{ loading ? 'Đang xử lý...' : 'Xóa' }}
-            </button>
+            <button class="btn btn-secondary" @click="closeDeleteModal">Hủy</button>
+            <button class="btn btn-danger" @click="handleDelete" :disabled="loading">{{ loading ? 'Đang xử lý...' : 'Xóa' }}</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="modal-backdrop fade show" v-if="showAddModal || showDeleteModal"></div>
+    <div class="modal fade" :class="{ show: showBooksModal, 'd-block': showBooksModal }" tabindex="-1" style="background-color: rgba(0,0,0,0.5)">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Sách của thể loại <strong>{{ selectedCategory?.tenTheLoai }}</strong></h5>
+            <button type="button" class="btn-close" @click="closeBooksModal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Mã sách</th>
+                    <th>Tên sách</th>
+                    <th>Năm XB</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="book in categoryBooks" :key="book.maSach">
+                    <td>{{ book.maSach }}</td>
+                    <td>{{ book.tenSach }}</td>
+                    <td>{{ book.namXuatBan || '—' }}</td>
+                    <td>
+                      <span class="badge" :class="book.soLuongHienCo > 0 ? 'bg-success' : 'bg-danger'">
+                        {{ book.soLuongHienCo || 0 }}
+                      </span>
+                    </td>
+                    <td>{{ formatCurrency(book.donGia) }}</td>
+                  </tr>
+                  <tr v-if="categoryBooks.length === 0">
+                    <td colspan="5" class="text-center text-muted">Không có sách nào</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="closeBooksModal">Đóng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-backdrop fade show" v-if="showAddModal || showDeleteModal || showBooksModal"></div>
   </div>
 </template>
-
 <script>
-import { ref, onMounted, computed } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useStore } from 'vuex';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
 import { showError, showSuccess } from '@/utils/notifications';
-
 export default {
   name: 'CategoryManagement',
   components: { LoadingSpinner },
   setup() {
     const store = useStore();
-    const showAddModal = ref(false);
-    const editingCategory = ref(null);
-    const searchTerm = ref('');
-    const showDeleteModal = ref(false);
-    const selectedCategory = ref(null);
-    const categoryForm = ref({
-      maTheLoai: '',
-      tenTheLoai: '',
-    });
-    const errors = ref({});
-
-    const categories = computed(() => store.getters['category/allCategories'] || []);
+    // Loading và error
     const loading = computed(() => store.getters['category/isLoading'] || false);
     const error = computed(() => store.getters['category/error']);
-
-    const filteredCategories = computed(() => {
-      const cats = categories.value || [];
-      if (!searchTerm.value.trim()) return cats;
-      const search = searchTerm.value.toLowerCase().trim();
-      return cats.filter(cat =>
-        String(cat.maTheLoai).toLowerCase().includes(search) ||
-        cat.tenTheLoai.toLowerCase().includes(search)
-      );
-    });
-
+    // Modal và UI state
+    const showAddModal = ref(false);
+    const editingCategory = ref(null);
+    const showDeleteModal = ref(false);
+    const showBooksModal = ref(false);
+    const showAdvancedSearch = ref(false);
+    const selectedCategory = ref(null);
+    // Form & validation
+    const categoryForm = ref({ maTheLoai: '', tenTheLoai: '' });
+    const errors = ref({});
+    // Filters & sorting
+    const filters = ref({ tenTheLoai: '', maTheLoai: null });
+    const sortBy = ref('tenTheLoai-asc');
+    // Pagination
+    const pagination = ref({ total: 0, page: 1, limit: 10, totalPages: 1 });
+    // Data
+    const categories = computed(() => store.getters['category/allCategories'] || []);
+    // Sửa lỗi 3: Giữ nguyên 'Sach' nếu API trả về property này, hoặc đổi thành 'books'
+    const categoryBooks = computed(() => selectedCategory.value?.Sach || []); 
+    const totalPages = computed(() => pagination.value.totalPages || 1);
+    // Validation
     const validateField = (field) => {
-      const newErrors = { ...errors.value };
-      if (field === 'tenTheLoai') {
-        if (!categoryForm.value.tenTheLoai) {
-          newErrors.tenTheLoai = 'Tên thể loại là bắt buộc';
-        } else {
-          delete newErrors.tenTheLoai;
-        }
-      }
-      errors.value = newErrors;
+      const e = { ...errors.value };
+      if (field === 'tenTheLoai' && !categoryForm.value.tenTheLoai) e.tenTheLoai = 'Tên thể loại là bắt buộc';
+      else delete e[field];
+      errors.value = e;
     };
-
     const validateForm = () => {
-      const newErrors = {};
-      if (!categoryForm.value.tenTheLoai) {
-        newErrors.tenTheLoai = 'Tên thể loại là bắt buộc';
-      }
-      errors.value = newErrors;
-      return Object.keys(newErrors).length === 0;
+      const e = {};
+      if (!categoryForm.value.tenTheLoai) e.tenTheLoai = 'Tên thể loại là bắt buộc';
+      errors.value = e;
+      return Object.keys(e).length === 0;
     };
-
+    // Fetch dữ liệu & Áp dụng filters (Sửa lỗi 1: Đưa logic lọc vào đây)
     const fetchData = async () => {
       try {
-        console.log('Fetching categories...');
-        await store.dispatch('category/fetchCategories');
-        console.log('Categories fetched successfully:', store.getters['category/allCategories']);
+        const params = {
+          limit: pagination.value.limit,
+          page: pagination.value.page,
+        };
+        // Thêm Filters
+        if (filters.value.tenTheLoai?.trim()) params.tenTheLoai = filters.value.tenTheLoai.trim();
+        if (filters.value.maTheLoai !== null && filters.value.maTheLoai !== '') params.maTheLoai = filters.value.maTheLoai;
+
+        // Thêm Sorting
+        const [field, dir] = sortBy.value.split('-');
+        params.sortBy = field;
+        params.order = dir.toUpperCase();
+
+        // Giả định store có action 'searchCategories' để xử lý lọc/phân trang
+        const result = await store.dispatch('category/searchCategories', params); 
+        
+        // Cập nhật Pagination
+        pagination.value.total = result.total || 0;
+        pagination.value.page = result.page || 1;
+        pagination.value.limit = result.limit || 10;
+        pagination.value.totalPages = result.totalPages || 1;
+
       } catch (err) {
-        console.error('Error fetching categories:', {
-          message: err.message,
-          stack: err.stack,
-          response: err.response?.data
-        });
         showError('Lỗi khi tải dữ liệu: ' + (err.response?.data?.message || err.message));
       }
     };
-
-    const closeModal = () => {
-      showAddModal.value = false;
-      editingCategory.value = null;
-      categoryForm.value = {
-        maTheLoai: '',
-        tenTheLoai: '',
-      };
-      errors.value = {};
+    // Filters
+    const applyFilters = () => {
+      // Đặt lại trang về 1 khi áp dụng bộ lọc mới
+      pagination.value.page = 1; 
+      fetchData();
     };
-
-    const closeDeleteModal = () => {
-      showDeleteModal.value = false;
-      selectedCategory.value = null;
+    const resetFilters = () => {
+      filters.value = { tenTheLoai: '', maTheLoai: null };
+      sortBy.value = 'tenTheLoai-asc';
+      pagination.value.page = 1;
+      fetchData(); // Sửa: gọi fetchData sau khi reset
     };
-
+    // Pagination
+    const changePage = (page) => {
+      if (page < 1 || page > totalPages.value) return;
+      pagination.value.page = page;
+      fetchData(); // Sửa: gọi fetchData khi đổi trang
+    };
+    // Watch filters/sorting để tự động lọc khi thay đổi (tùy chọn, nếu không muốn dùng nút Áp dụng)
+    // watch([filters, sortBy], () => {
+    //   pagination.value.page = 1;
+    //   fetchData();
+    // }, { deep: true });
+    // CRUD
     const editCategory = (category) => {
-      if (!category.maTheLoai) {
-        console.error('Category maTheLoai is undefined');
-        showError('Không tìm thấy mã thể loại');
-        return;
-      }
       editingCategory.value = category;
       categoryForm.value = { ...category };
       showAddModal.value = true;
     };
-
     const confirmDelete = (category) => {
-      if (!category.maTheLoai) {
-        console.error('Category maTheLoai is undefined');
-        showError('Không tìm thấy mã thể loại');
-        return;
-      }
       selectedCategory.value = category;
       showDeleteModal.value = true;
     };
-
     const handleDelete = async () => {
       try {
-        if (!selectedCategory.value?.maTheLoai) {
-          console.error('Category maTheLoai is undefined for deletion');
-          showError('Không tìm thấy mã thể loại');
-          return;
-        }
-        console.log('Deleting category:', selectedCategory.value.maTheLoai);
         await store.dispatch('category/deleteCategory', selectedCategory.value.maTheLoai);
         await fetchData();
-        closeDeleteModal();
         showSuccess('Xóa thể loại thành công');
-        console.log('Category deleted successfully');
       } catch (err) {
-        console.error('Delete category error:', {
-          message: err.message,
-          stack: err.stack,
-          response: err.response?.data
-        });
         showError('Lỗi khi xóa thể loại: ' + (err.response?.data?.message || err.message));
+      } finally {
+        showDeleteModal.value = false;
+        selectedCategory.value = null;
       }
     };
-
     const handleSubmit = async () => {
-      console.log('handleSubmit triggered');
+      if (!validateForm()) {
+        showError('Vui lòng kiểm tra lại các trường thông tin');
+        return;
+      }
       try {
-        const isValid = validateForm();
-        console.log('Validation result:', { isValid, errors: errors.value });
-        if (!isValid) {
-          console.warn('Validation failed:', errors.value);
-          showError('Vui lòng kiểm tra lại các trường thông tin');
-          return;
-        }
-
-        const categoryData = { ...categoryForm.value };
-        if (!editingCategory.value) {
-          delete categoryData.maTheLoai; // Không gửi maTheLoai khi thêm mới
-        }
-        console.log('Submitting category data:', categoryData);
-
         if (editingCategory.value) {
-          if (!editingCategory.value.maTheLoai) {
-            console.error('maTheLoai is undefined for editing category');
-            showError('Không tìm thấy mã thể loại');
-            return;
-          }
-          await store.dispatch('category/updateCategory', {
-            maTheLoai: editingCategory.value.maTheLoai,
-            categoryData
-          });
+          await store.dispatch('category/updateCategory', { maTheLoai: editingCategory.value.maTheLoai, categoryData: categoryForm.value });
           showSuccess('Cập nhật thể loại thành công');
-          console.log('Category updated successfully');
         } else {
-          const response = await store.dispatch('category/createCategory', categoryData);
-          console.log('Create category response:', response);
+          await store.dispatch('category/createCategory', categoryForm.value);
           showSuccess('Thêm thể loại thành công');
         }
         await fetchData();
-        closeModal();
+        showAddModal.value = false;
+        editingCategory.value = null;
+        categoryForm.value = { maTheLoai: '', tenTheLoai: '' };
       } catch (err) {
-        console.error('Error saving category:', {
-          message: err.message,
-          stack: err.stack,
-          response: err.response?.data
-        });
         showError('Lỗi khi lưu thể loại: ' + (err.response?.data?.message || err.message));
       }
     };
-
-    const clearError = () => {
-      store.commit('category/SET_ERROR', null);
+    const closeModal = () => {
+      showAddModal.value = false;
+      editingCategory.value = null;
+      categoryForm.value = { maTheLoai: '', tenTheLoai: '' };
+      errors.value = {};
     };
-
-    onMounted(fetchData);
+    // Xem sách
+    const showCategoryBooks = (category) => {
+      selectedCategory.value = category;
+      showBooksModal.value = true;
+    };
+    const closeBooksModal = () => {
+      selectedCategory.value = null;
+      showBooksModal.value = false;
+    };
+    // Utils
+    const clearError = () => store.commit('category/SET_ERROR', null);
+    const formatCurrency = val => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(val || 0);
+    
+    // Sửa lỗi: Gọi fetchData lần đầu khi component được mount
+    onMounted(fetchData); 
 
     return {
-      showAddModal,
-      editingCategory,
-      categoryForm,
-      errors,
-      loading,
-      error,
-      filteredCategories,
-      searchTerm,
-      closeModal,
-      editCategory,
-      handleSubmit,
-      clearError,
-      showDeleteModal,
-      selectedCategory,
-      confirmDelete,
-      closeDeleteModal,
-      handleDelete
+      // State & refs
+      loading, error, showAddModal, editingCategory, showDeleteModal, showBooksModal, selectedCategory, showAdvancedSearch,
+      categoryForm, errors, categories, categoryBooks, totalPages, pagination, filters, sortBy,
+      // Methods
+      validateField, validateForm, closeModal, editCategory, confirmDelete, handleDelete,
+      handleSubmit, showCategoryBooks, closeBooksModal, clearError, applyFilters, resetFilters, changePage, formatCurrency
     };
   }
 };
 </script>
-
 <style scoped>
 .modal {
   background-color: rgba(0, 0, 0, 0.5);

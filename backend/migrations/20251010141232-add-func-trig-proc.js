@@ -166,6 +166,370 @@ module.exports = {
         RETURN bookCount;
       END
     `);
+    // Procedure: tìm kiếm sách nâng cao
+    await queryInterface.sequelize.query(`
+      DROP PROCEDURE IF EXISTS sp_tim_kiem_sach_nang_cao;
+    `);
+    await queryInterface.sequelize.query(`
+      CREATE PROCEDURE sp_tim_kiem_sach_nang_cao(
+        IN p_tenSach VARCHAR(255),
+        IN p_maSach INT,
+        IN p_maTacGia INT,
+        IN p_maNXB INT,
+        IN p_maTheLoai INT,
+        IN p_namMin INT,
+        IN p_namMax INT,
+        IN p_nguonGoc VARCHAR(100),
+        IN p_sortBy VARCHAR(50),
+        IN p_order VARCHAR(4),
+        IN p_limit INT,
+        IN p_offset INT,
+        OUT p_total INT
+      )
+      BEGIN
+        -- Đếm tổng số bản ghi
+        SET @count_sql = 'SELECT COUNT(*) INTO @total_count FROM Sach
+                          LEFT JOIN TacGia ON Sach.maTacGia = TacGia.maTacGia
+                          LEFT JOIN NhaXuatBan ON Sach.maNXB = NhaXuatBan.maNXB
+                          LEFT JOIN TheLoai ON Sach.maTheLoai = TheLoai.maTheLoai
+                          WHERE 1=1';
+
+        -- Truy vấn chính: trả về JSON_OBJECT cho TacGia, NhaXuatBan, TheLoai
+        SET @sql = 'SELECT
+                      Sach.*,
+                      JSON_OBJECT(
+                        "maTacGia", TacGia.maTacGia,
+                        "tenTacGia", TacGia.tenTacGia
+                      ) AS TacGia,
+                      JSON_OBJECT(
+                        "maNXB", NhaXuatBan.maNXB,
+                        "tenNXB", NhaXuatBan.tenNXB
+                      ) AS NhaXuatBan,
+                      JSON_OBJECT(
+                        "maTheLoai", TheLoai.maTheLoai,
+                        "tenTheLoai", TheLoai.tenTheLoai
+                      ) AS TheLoai
+                    FROM Sach
+                    LEFT JOIN TacGia ON Sach.maTacGia = TacGia.maTacGia
+                    LEFT JOIN NhaXuatBan ON Sach.maNXB = NhaXuatBan.maNXB
+                    LEFT JOIN TheLoai ON Sach.maTheLoai = TheLoai.maTheLoai
+                    WHERE 1=1';
+
+        -- === XÂY DỰNG ĐIỀU KIỆN ===
+        IF p_tenSach IS NOT NULL AND p_tenSach != '' THEN
+          SET @sql = CONCAT(@sql, ' AND Sach.tenSach LIKE ', QUOTE(CONCAT('%', p_tenSach, '%')));
+          SET @count_sql = CONCAT(@count_sql, ' AND Sach.tenSach LIKE ', QUOTE(CONCAT('%', p_tenSach, '%')));
+        END IF;
+
+        IF p_maSach IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND Sach.maSach = ', p_maSach);
+          SET @count_sql = CONCAT(@count_sql, ' AND Sach.maSach = ', p_maSach);
+        END IF;
+
+        IF p_maTacGia IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND Sach.maTacGia = ', p_maTacGia);
+          SET @count_sql = CONCAT(@count_sql, ' AND Sach.maTacGia = ', p_maTacGia);
+        END IF;
+
+        IF p_maNXB IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND Sach.maNXB = ', p_maNXB);
+          SET @count_sql = CONCAT(@count_sql, ' AND Sach.maNXB = ', p_maNXB);
+        END IF;
+
+        IF p_maTheLoai IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND Sach.maTheLoai = ', p_maTheLoai);
+          SET @count_sql = CONCAT(@count_sql, ' AND Sach.maTheLoai = ', p_maTheLoai);
+        END IF;
+
+        IF p_namMin IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND Sach.namXuatBan >= ', p_namMin);
+          SET @count_sql = CONCAT(@count_sql, ' AND Sach.namXuatBan >= ', p_namMin);
+        END IF;
+
+        IF p_namMax IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND Sach.namXuatBan <= ', p_namMax);
+          SET @count_sql = CONCAT(@count_sql, ' AND Sach.namXuatBan <= ', p_namMax);
+        END IF;
+
+        IF p_nguonGoc IS NOT NULL AND p_nguonGoc != '' THEN
+          SET @sql = CONCAT(@sql, ' AND Sach.nguonGoc LIKE ', QUOTE(CONCAT('%', p_nguonGoc, '%')));
+          SET @count_sql = CONCAT(@count_sql, ' AND Sach.nguonGoc LIKE ', QUOTE(CONCAT('%', p_nguonGoc, '%')));
+        END IF;
+
+        -- === SẮP XẾP ===
+        SET @sortField = IFNULL(NULLIF(p_sortBy, ''), 'tenSach');
+        SET @sortOrder = IFNULL(NULLIF(p_order, ''), 'ASC');
+        SET @sql = CONCAT(@sql, ' ORDER BY Sach.', @sortField, ' ', @sortOrder);
+
+        -- === PHÂN TRANG ===
+        SET @sql = CONCAT(@sql, ' LIMIT ', p_limit, ' OFFSET ', p_offset);
+
+        -- === THỰC THI ĐẾM TỔNG ===
+        PREPARE count_stmt FROM @count_sql;
+        EXECUTE count_stmt;
+        DEALLOCATE PREPARE count_stmt;
+        SET p_total = @total_count;
+
+        -- === THỰC THI TRUY VẤN CHÍNH ===
+        PREPARE stmt FROM @sql;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+      END
+    `);
+    await queryInterface.sequelize.query(`
+      DROP PROCEDURE IF EXISTS sp_tim_kiem_nha_xuat_ban_nang_cao;
+    `);
+
+    await queryInterface.sequelize.query(`
+      CREATE PROCEDURE sp_tim_kiem_nha_xuat_ban_nang_cao(
+          IN p_tenNXB VARCHAR(255),
+          IN p_maNXB INT,
+          IN p_diaChi VARCHAR(255),
+          IN p_namMin INT,
+          IN p_namMax INT,
+          IN p_sortBy VARCHAR(50),
+          IN p_order VARCHAR(4),
+          IN p_limit INT,
+          IN p_offset INT,
+          OUT p_total INT
+      )
+      BEGIN
+          -- Đếm tổng
+          SET @count_sql = 'SELECT COUNT(DISTINCT nxb.maNXB) INTO @total_count 
+                            FROM NhaXuatBan nxb 
+                            LEFT JOIN Sach s ON nxb.maNXB = s.maNXB 
+                            WHERE 1=1';
+
+          SET @sql = 'SELECT 
+                          nxb.*,
+                          COALESCE(
+                            JSON_ARRAYAGG(
+                              CASE 
+                                WHEN s.maSach IS NOT NULL THEN JSON_OBJECT(
+                                  "maSach", s.maSach,
+                                  "tenSach", s.tenSach,
+                                  "namXuatBan", s.namXuatBan,
+                                  "soLuongHienCo", s.soLuongHienCo,
+                                  "donGia", s.donGia
+                                )
+                                ELSE NULL
+                              END
+                            ),
+                            JSON_ARRAY()
+                          ) AS Sach
+                      FROM NhaXuatBan nxb
+                      LEFT JOIN Sach s ON nxb.maNXB = s.maNXB
+                      WHERE 1=1';
+
+          -- Điều kiện
+          IF p_tenNXB IS NOT NULL AND p_tenNXB != '' THEN
+              SET @sql = CONCAT(@sql, ' AND nxb.tenNXB LIKE ', QUOTE(CONCAT('%', p_tenNXB, '%')));
+              SET @count_sql = CONCAT(@count_sql, ' AND nxb.tenNXB LIKE ', QUOTE(CONCAT('%', p_tenNXB, '%')));
+          END IF;
+
+          IF p_maNXB IS NOT NULL THEN
+              SET @sql = CONCAT(@sql, ' AND nxb.maNXB = ', p_maNXB);
+              SET @count_sql = CONCAT(@count_sql, ' AND nxb.maNXB = ', p_maNXB);
+          END IF;
+
+          IF p_diaChi IS NOT NULL AND p_diaChi != '' THEN
+              SET @sql = CONCAT(@sql, ' AND nxb.diaChi LIKE ', QUOTE(CONCAT('%', p_diaChi, '%')));
+              SET @count_sql = CONCAT(@count_sql, ' AND nxb.diaChi LIKE ', QUOTE(CONCAT('%', p_diaChi, '%')));
+          END IF;
+
+          IF p_namMin IS NOT NULL THEN
+              SET @sql = CONCAT(@sql, ' AND (s.namXuatBan >= ', p_namMin, ' OR s.namXuatBan IS NULL)');
+              SET @count_sql = CONCAT(@count_sql, ' AND (s.namXuatBan >= ', p_namMin, ' OR s.namXuatBan IS NULL)');
+          END IF;
+
+          IF p_namMax IS NOT NULL THEN
+              SET @sql = CONCAT(@sql, ' AND (s.namXuatBan <= ', p_namMax, ' OR s.namXuatBan IS NULL)');
+              SET @count_sql = CONCAT(@count_sql, ' AND (s.namXuatBan <= ', p_namMax, ' OR s.namXuatBan IS NULL)');
+          END IF;
+
+          -- Nhóm, sắp xếp, phân trang
+          SET @sql = CONCAT(@sql, 
+              ' GROUP BY nxb.maNXB 
+                ORDER BY nxb.', p_sortBy, ' ', p_order,
+              ' LIMIT ', p_limit, ' OFFSET ', p_offset);
+
+          -- Thực thi đếm tổng
+          PREPARE count_stmt FROM @count_sql;
+          EXECUTE count_stmt;
+          DEALLOCATE PREPARE count_stmt;
+          SET p_total = @total_count;
+
+          -- Truy vấn dữ liệu chính
+          PREPARE stmt FROM @sql;
+          EXECUTE stmt;
+          DEALLOCATE PREPARE stmt;
+      END
+    `);
+    await queryInterface.sequelize.query(`
+      DROP PROCEDURE IF EXISTS sp_tim_kiem_tac_gia_nang_cao;
+    `);
+    await queryInterface.sequelize.query(`
+      CREATE PROCEDURE sp_tim_kiem_tac_gia_nang_cao(
+        IN p_tenTacGia VARCHAR(255),
+        IN p_maTacGia INT,
+        IN p_quocTich VARCHAR(100),
+        IN p_namMin INT,
+        IN p_namMax INT,
+        IN p_sortBy VARCHAR(50),
+        IN p_order VARCHAR(4),
+        IN p_limit INT,
+        IN p_offset INT,
+        OUT p_total INT
+      )
+      BEGIN
+        SET @count_sql = 'SELECT COUNT(DISTINCT tg.maTacGia) INTO @total_count
+                          FROM TacGia tg
+                          LEFT JOIN Sach s ON tg.maTacGia = s.maTacGia
+                          WHERE 1=1';
+        SET @sql = 'SELECT
+                      tg.*,
+                      COALESCE(
+                        JSON_ARRAYAGG(
+                          CASE
+                            WHEN s.maSach IS NOT NULL THEN JSON_OBJECT(
+                              "maSach", s.maSach,
+                              "tenSach", s.tenSach,
+                              "namXuatBan", s.namXuatBan,
+                              "soLuongHienCo", s.soLuongHienCo,
+                              "donGia", s.donGia
+                            )
+                            ELSE NULL
+                          END
+                        ),
+                        JSON_ARRAY()
+                      ) AS Sach
+                    FROM TacGia tg
+                    LEFT JOIN Sach s ON tg.maTacGia = s.maTacGia
+                    WHERE 1=1';
+        -- Điều kiện lọc
+        IF p_tenTacGia IS NOT NULL AND p_tenTacGia != '' THEN
+          SET @sql = CONCAT(@sql, ' AND tg.tenTacGia LIKE ', QUOTE(CONCAT('%', p_tenTacGia, '%')));
+          SET @count_sql = CONCAT(@count_sql, ' AND tg.tenTacGia LIKE ', QUOTE(CONCAT('%', p_tenTacGia, '%')));
+        END IF;
+        IF p_maTacGia IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND tg.maTacGia = ', p_maTacGia);
+          SET @count_sql = CONCAT(@count_sql, ' AND tg.maTacGia = ', p_maTacGia);
+        END IF;
+        IF p_quocTich IS NOT NULL AND p_quocTich != '' THEN
+          SET @sql = CONCAT(@sql, ' AND tg.quocTich LIKE ', QUOTE(CONCAT('%', p_quocTich, '%')));
+          SET @count_sql = CONCAT(@count_sql, ' AND tg.quocTich LIKE ', QUOTE(CONCAT('%', p_quocTich, '%')));
+        END IF;
+        IF p_namMin IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND (s.namXuatBan >= ', p_namMin, ' OR s.namXuatBan IS NULL)');
+          SET @count_sql = CONCAT(@count_sql, ' AND (s.namXuatBan >= ', p_namMin, ' OR s.namXuatBan IS NULL)');
+        END IF;
+        IF p_namMax IS NOT NULL THEN
+          SET @sql = CONCAT(@sql, ' AND (s.namXuatBan <= ', p_namMax, ' OR s.namXuatBan IS NULL)');
+          SET @count_sql = CONCAT(@count_sql, ' AND (s.namXuatBan <= ', p_namMax, ' OR s.namXuatBan IS NULL)');
+        END IF;
+
+        SET @sql = CONCAT(@sql, ' GROUP BY tg.maTacGia ORDER BY tg.', p_sortBy, ' ', p_order,
+                          ' LIMIT ', p_limit, ' OFFSET ', p_offset);
+
+        -- Đếm tổng
+        PREPARE count_stmt FROM @count_sql;
+        EXECUTE count_stmt;
+        DEALLOCATE PREPARE count_stmt;
+        SET p_total = @total_count;
+
+        -- Lấy dữ liệu
+        PREPARE stmt FROM @sql;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
+      END
+    `);
+
+    await queryInterface.sequelize.query(`
+      DROP PROCEDURE IF EXISTS sp_tim_kiem_the_loai_nang_cao;
+    `);
+    await queryInterface.sequelize.query(`
+      CREATE PROCEDURE sp_tim_kiem_the_loai_nang_cao(
+          IN p_tenTheLoai VARCHAR(255),
+          IN p_maTheLoai INT,
+          IN p_namMin INT,
+          IN p_namMax INT,
+          IN p_sortBy VARCHAR(50),
+          IN p_order VARCHAR(4),
+          IN p_limit INT,
+          IN p_offset INT,
+          OUT p_total INT
+      )
+      BEGIN
+          -- Đếm tổng
+          SET @count_sql = 'SELECT COUNT(DISTINCT tl.maTheLoai) INTO @total_count 
+                            FROM TheLoai tl
+                            LEFT JOIN Sach s ON tl.maTheLoai = s.maTheLoai
+                            WHERE 1=1';
+
+          SET @sql = 'SELECT 
+                          tl.*,
+                          COALESCE(
+                            JSON_ARRAYAGG(
+                              CASE 
+                                WHEN s.maSach IS NOT NULL THEN JSON_OBJECT(
+                                  "maSach", s.maSach,
+                                  "tenSach", s.tenSach,
+                                  "namXuatBan", s.namXuatBan,
+                                  "soLuongHienCo", s.soLuongHienCo,
+                                  "donGia", s.donGia
+                                )
+                                ELSE NULL
+                              END
+                            ),
+                            JSON_ARRAY()
+                          ) AS Sach
+                      FROM TheLoai tl
+                      LEFT JOIN Sach s ON tl.maTheLoai = s.maTheLoai
+                      WHERE 1=1';
+
+          -- Điều kiện tìm kiếm
+          IF p_tenTheLoai IS NOT NULL AND p_tenTheLoai != '' THEN
+              SET @sql = CONCAT(@sql, ' AND tl.tenTheLoai LIKE ', QUOTE(CONCAT('%', p_tenTheLoai, '%')));
+              SET @count_sql = CONCAT(@count_sql, ' AND tl.tenTheLoai LIKE ', QUOTE(CONCAT('%', p_tenTheLoai, '%')));
+          END IF;
+
+          IF p_maTheLoai IS NOT NULL THEN
+              SET @sql = CONCAT(@sql, ' AND tl.maTheLoai = ', p_maTheLoai);
+              SET @count_sql = CONCAT(@count_sql, ' AND tl.maTheLoai = ', p_maTheLoai);
+          END IF;
+
+          IF p_namMin IS NOT NULL THEN
+              SET @sql = CONCAT(@sql, ' AND (s.namXuatBan >= ', p_namMin, ' OR s.namXuatBan IS NULL)');
+              SET @count_sql = CONCAT(@count_sql, ' AND (s.namXuatBan >= ', p_namMin, ' OR s.namXuatBan IS NULL)');
+          END IF;
+
+          IF p_namMax IS NOT NULL THEN
+              SET @sql = CONCAT(@sql, ' AND (s.namXuatBan <= ', p_namMax, ' OR s.namXuatBan IS NULL)');
+              SET @count_sql = CONCAT(@count_sql, ' AND (s.namXuatBan <= ', p_namMax, ' OR s.namXuatBan IS NULL)');
+          END IF;
+
+          -- Nhóm, sắp xếp, phân trang
+          SET @sql = CONCAT(@sql, 
+              ' GROUP BY tl.maTheLoai 
+                ORDER BY tl.', p_sortBy, ' ', p_order,
+              ' LIMIT ', p_limit, ' OFFSET ', p_offset);
+
+          -- Đếm tổng
+          PREPARE count_stmt FROM @count_sql;
+          EXECUTE count_stmt;
+          DEALLOCATE PREPARE count_stmt;
+          SET p_total = @total_count;
+
+          -- Truy vấn chính
+          PREPARE stmt FROM @sql;
+          EXECUTE stmt;
+          DEALLOCATE PREPARE stmt;
+      END
+    `);
+
+    
+    
+  
   },
 
   async down(queryInterface, Sequelize) {
@@ -180,5 +544,11 @@ module.exports = {
     await queryInterface.sequelize.query('DROP FUNCTION IF EXISTS fn_check_author_books;');
     await queryInterface.sequelize.query('DROP FUNCTION IF EXISTS fn_check_publisher_books;');
     await queryInterface.sequelize.query('DROP FUNCTION IF EXISTS fn_kiem_tra_so_luong_sach;');
+    await queryInterface.sequelize.query('DROP PROCEDURE IF EXISTS sp_tim_kiem_sach_nang_cao;');
+    await queryInterface.sequelize.query('DROP PROCEDURE IF EXISTS sp_tim_kiem_nha_xuat_ban_nang_cao;');
+    await queryInterface.sequelize.query('DROP PROCEDURE IF EXISTS sp_tim_kiem_tac_gia_nang_cao;');
+    await queryInterface.sequelize.query('DROP PROCEDURE IF EXISTS sp_tim_kiem_the_loai_nang_cao;');
+    
+    
   }
 };

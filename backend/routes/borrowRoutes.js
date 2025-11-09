@@ -9,8 +9,10 @@ const {
   updateBorrowRequest,
   exportBorrowSlip,
   exportReturnSlip,
-  exportPenaltyForm
+  exportPenaltyForm,
 } = require('../controllers/borrowController.js');
+
+
 
 // Routes cho admin
 router.get('/admin/requests', auth, adminAuth, getAllBorrowRequests);

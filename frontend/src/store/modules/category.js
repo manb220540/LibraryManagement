@@ -1,4 +1,3 @@
-// src/store/modules/category.js
 import api from '@/services/api';
 
 const state = {
@@ -14,18 +13,60 @@ const getters = {
 };
 
 const actions = {
+  // Lấy tất cả thể loại
+  // async fetchCategories({ commit }) {
+  //   try {
+  //     commit('SET_LOADING', true);
+  //     const response = await api.get('/theloai');
+  //     commit('SET_CATEGORIES', response.data);
+  //     commit('SET_LOADING', false);
+  //   } catch (error) {
+  //     commit('SET_ERROR', error.response?.data?.message || error.message);
+  //     commit('SET_LOADING', false);
+  //     throw error;
+  //   }
+  // },
   async fetchCategories({ commit }) {
     try {
       commit('SET_LOADING', true);
       const response = await api.get('/theloai');
-      commit('SET_CATEGORIES', response.data);
-      commit('SET_LOADING', false);
+
+      // Chuẩn hóa dữ liệu
+      const categoriesRaw = Array.isArray(response.data)
+        ? response.data
+        : response.data.data || [];
+
+      const categories = categoriesRaw.map(c => ({
+        ...c,
+        books: c.Sach || [],
+      }));
+
+      commit('SET_CATEGORIES', categories);
     } catch (error) {
       commit('SET_ERROR', error.response?.data?.message || error.message);
-      commit('SET_LOADING', false);
       throw error;
+    } finally {
+      commit('SET_LOADING', false);
     }
   },
+  
+
+  // Tìm kiếm nâng cao thể loại
+  async searchCategories({ commit }, filters) {
+    try {
+      commit('SET_LOADING', true);
+      const response = await api.get('/theloai/search', { params: filters });
+      commit('SET_CATEGORIES', response.data.data);
+      return response.data.pagination;
+    } catch (error) {
+      commit('SET_ERROR', error.response?.data?.message || error.message);
+      throw error;
+    } finally {
+      commit('SET_LOADING', false);
+    }
+  },
+
+  // Tạo thể loại
   async createCategory({ commit }, categoryData) {
     try {
       commit('SET_LOADING', true);
@@ -38,6 +79,8 @@ const actions = {
       throw error;
     }
   },
+
+  // Cập nhật thể loại
   async updateCategory({ commit }, { maTheLoai, categoryData }) {
     try {
       commit('SET_LOADING', true);
@@ -50,24 +93,25 @@ const actions = {
       throw error;
     }
   },
+
+  // Xóa thể loại
   async deleteCategory({ commit }, maTheLoai) {
     try {
       commit('SET_LOADING', true);
       await api.delete(`/theloai/${maTheLoai}`);
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Xóa thể loại thất bại';
+      commit('SET_ERROR', errorMessage);
+      console.error('Error in deleteCategory:', {
+        message: error.message,
+        stack: error.stack,
+        response: error.response?.data
+      });
+      throw error;
+    } finally {
       commit('SET_LOADING', false);
-      } catch (error) {
-        const errorMessage = error.response?.data?.message || 'Xóa thể loại thất bại';
-            commit('SET_ERROR', errorMessage);
-            console.error('Error in deleteCategory:', {
-            message: error.message,
-            stack: error.stack,
-            response: error.response?.data
-            });
-            throw error;
-            } finally {
-                commit('SET_LOADING', false);
-            }
-    },
+    }
+  },
 };
 
 const mutations = {

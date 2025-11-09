@@ -7,12 +7,15 @@ const {
   createPublisher,
   updatePublisher,
   deletePublisher,
-  getPublisherById
+  getPublisherById,
+  searchPublishersAdvanced,
 } = require('../controllers/publisherController.js');
 
 // Routes công khai
 router.get('/', getAllPublishers);
+router.get('/search', searchPublishersAdvanced);
 router.get('/:id', getPublisherById);
+
 
 // Routes yêu cầu quyền admin
 router.post('/', auth, adminAuth, createPublisher);

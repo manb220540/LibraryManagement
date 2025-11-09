@@ -32,11 +32,11 @@ const PhieuTra = require('./PhieuTra')(sequelize, DataTypes);
 
 // Associations
 Sach.belongsTo(TacGia, { foreignKey: 'maTacGia', as: 'TacGia' });
-TacGia.hasMany(Sach, { foreignKey: 'maTacGia', as: 'Sachs' });
+TacGia.hasMany(Sach, { foreignKey: 'maTacGia', as: 'Sach' });
 Sach.belongsTo(TheLoai, { foreignKey: 'maTheLoai', as: 'TheLoai' });
-TheLoai.hasMany(Sach, { foreignKey: 'maTheLoai', as: 'Sachs' });
+TheLoai.hasMany(Sach, { foreignKey: 'maTheLoai', as: 'Sach' });
 Sach.belongsTo(NhaXuatBan, { foreignKey: 'maNXB', as: 'NhaXuatBan' });
-NhaXuatBan.hasMany(Sach, { foreignKey: 'maNXB', as: 'Sachs' });
+NhaXuatBan.hasMany(Sach, { foreignKey: 'maNXB', as: 'Sach' });
 PhieuMuon.belongsTo(DocGia, { foreignKey: 'maDocGia', as: 'DocGia' });
 DocGia.hasMany(PhieuMuon, { foreignKey: 'maDocGia', as: 'PhieuMuons' });
 ChiTietPhieuMuon.belongsTo(PhieuMuon, { foreignKey: 'maPhieuMuon', as: 'PhieuMuon' });

@@ -10,10 +10,10 @@ const getAllCategories = async (req, res) => {
   try {
     logger.info('Fetching all categories');
     const categories = await TheLoai.findAll({
-      include: [{ model: Sach, as: 'Sachs', attributes: [] }], // Chỉ đếm số lượng, không lấy chi tiết sách
+      include: [{ model: Sach, as: 'Sach', attributes: [] }], // Chỉ đếm số lượng, không lấy chi tiết sách
       attributes: {
         include: [
-          [sequelize.fn('COUNT', sequelize.col('Sachs.maSach')), 'soLuongSach'],
+          [sequelize.fn('COUNT', sequelize.col('Sach.maSach')), 'soLuongSach'],
         ],
       },
       group: ['TheLoai.maTheLoai'],
@@ -36,7 +36,7 @@ const getCategoryById = async (req, res) => {
     const { maTheLoai } = req.params;
     logger.info('Fetching category by ID', { maTheLoai });
     const category = await TheLoai.findByPk(maTheLoai, {
-      include: [{ model: Sach, as: 'Sachs' }],
+      include: [{ model: Sach, as: 'Sach' }],
     });
     if (!category) {
       logger.warn('Category not found', { maTheLoai });
@@ -138,10 +138,117 @@ const deleteCategory = async (req, res) => {
   }
 };
 
+// Tìm kiếm thể loại nâng cao
+const searchCategoriesAdvanced = async (req, res) => {
+  try {
+    const {
+      tenTheLoai,
+      maTheLoai,
+      namMin,
+      namMax,
+      sortBy = 'tenTheLoai',
+      order = 'ASC',
+      limit = 12,
+      page = 1
+    } = req.query;
+
+    const offset = (page - 1) * limit;
+
+    logger.info('Searching categories advanced', req.query);
+
+    // ---- 1. Gọi procedure để lấy @total ----
+    await sequelize.query(
+      `CALL sp_tim_kiem_the_loai_nang_cao(
+        :tenTheLoai, :maTheLoai, :namMin, :namMax,
+        :sortBy, :order, :limit, :offset, @total
+      )`,
+      {
+        replacements: {
+          tenTheLoai: tenTheLoai || null,
+          maTheLoai: maTheLoai ? parseInt(maTheLoai) : null,
+          namMin: namMin ? parseInt(namMin) : null,
+          namMax: namMax ? parseInt(namMax) : null,
+          sortBy,
+          order: order.toUpperCase(),
+          limit: parseInt(limit),
+          offset: parseInt(offset)
+        },
+        type: sequelize.QueryTypes.RAW
+      }
+    );
+
+    // ---- 2. Lấy @total ----
+    const [[{ total }]] = await sequelize.query('SELECT @total AS total');
+
+    // ---- 3. Lấy dữ liệu (raw query giống getAllCategories) ----
+    const where = [];
+    if (tenTheLoai) where.push(`tl.tenTheLoai LIKE '%${tenTheLoai}%'`);
+    if (maTheLoai) where.push(`tl.maTheLoai = ${maTheLoai}`);
+    if (namMin) where.push(`(s.namXuatBan >= ${namMin} OR s.namXuatBan IS NULL)`);
+    if (namMax) where.push(`(s.namXuatBan <= ${namMax} OR s.namXuatBan IS NULL)`);
+
+    const whereClause = where.length ? 'WHERE ' + where.join(' AND ') : '';
+
+    const sql = `
+      SELECT 
+        tl.*,
+        COALESCE((
+          SELECT JSON_ARRAYAGG(
+            JSON_OBJECT(
+              'maSach', s.maSach,
+              'tenSach', s.tenSach,
+              'namXuatBan', s.namXuatBan,
+              'soLuongHienCo', s.soLuongHienCo,
+              'donGia', s.donGia
+            )
+          )
+          FROM Sach s 
+          WHERE s.maTheLoai = tl.maTheLoai
+        ), JSON_ARRAY()) AS Sach,
+        (
+          SELECT COUNT(*) 
+          FROM Sach s 
+          WHERE s.maTheLoai = tl.maTheLoai
+        ) AS soLuongSach
+      FROM TheLoai tl
+      LEFT JOIN Sach s ON tl.maTheLoai = s.maTheLoai
+      ${whereClause}
+      GROUP BY tl.maTheLoai
+      ORDER BY tl.${sortBy} ${order}
+      LIMIT ${limit} OFFSET ${offset};
+    `;
+
+    const [data] = await sequelize.query(sql);
+
+    const categories = data.map(cat => ({
+      ...cat,
+      Sach: Array.isArray(cat.Sach) ? cat.Sach : [],
+      soLuongSach: parseInt(cat.soLuongSach) || 0
+    }));
+
+
+    res.json({
+      data: categories,
+      pagination: {
+        total: total || 0,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        totalPages: Math.ceil((total || 0) / limit)
+      }
+    });
+
+  } catch (error) {
+    logger.error('Search categories advanced error', { error: error.message });
+    res.status(500).json({ message: 'Lỗi tìm kiếm thể loại' });
+  }
+};
+
+
 module.exports = {
   getAllCategories,
   getCategoryById,
   createCategory,
   updateCategory,
   deleteCategory,
+  searchCategoriesAdvanced,
 };

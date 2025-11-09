@@ -97,6 +97,26 @@ export default {
       } finally {
         commit('SET_LOADING', false);
       }
+    },
+    // store/modules/book.js
+    async fetchBooksAdvanced({ commit }, filters) {
+      try {
+        commit('SET_LOADING', true);
+        const response = await api.get('/sach/search', {
+          params: {
+            ...filters,
+            sortBy: filters.sortBy || 'tenSach',
+            order: filters.order || 'ASC'
+          }
+        });
+        commit('SET_BOOKS', response.data.data);
+        return response.data; // Trả về cả total nếu cần phân trang
+      } catch (error) {
+        commit('SET_ERROR', error.message);
+        throw error;
+      } finally {
+        commit('SET_LOADING', false);
+      }
     }
   },
 

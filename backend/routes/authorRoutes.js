@@ -8,10 +8,12 @@ const {
   createAuthor,
   updateAuthor,
   deleteAuthor,
-  getAuthorById
+  getAuthorById,
+  searchAuthorsAdvanced,
 } = require('../controllers/authorController.js');  
 // Routes công khai
 router.get('/', getAllAuthors);
+router.get('/search', searchAuthorsAdvanced);
 router.get('/:id', getAuthorById);  
 // Routes yêu cầu quyền admin
 router.post('/', auth, adminAuth, createAuthor);
