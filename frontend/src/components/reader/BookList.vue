@@ -122,7 +122,7 @@
               <!-- Nguồn gốc -->
               <div class="col-md-4">
                 <label class="form-label">Nguồn gốc</label>
-                <input type="text" class="form-control" v-model.trim="filters.nguonGoc" placeholder="Mua, tặng...">
+                <input type="text" class="form-control" v-model.trim="filters.nguonGoc" placeholder="Nhập nguồn gốc">
               </div>
 
               <!-- Sắp xếp -->

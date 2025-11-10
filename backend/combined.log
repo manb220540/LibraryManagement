@@ -6830,3 +6830,49 @@
 {"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:19.864Z"}
 {"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:20.362Z"}
 {"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:20.366Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:39:08.860Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:39:08.877Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T14:39:08.908Z","userId":121}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T14:39:09.054Z","userId":121,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T14:39:09.054Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:39:09.069Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:39:09.078Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T14:39:09.210Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:09.270Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:14.811Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"fgdsgd","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:25.535Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"fgdsg","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:30.061Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"fgds","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:30.554Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"fgd","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:30.629Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"fg","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:30.715Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"f","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:30.799Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:30.887Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:32.435Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"đ","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:32.437Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"dfsfs","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:33.648Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"dfsf","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:33.655Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"dfs","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:33.940Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"df","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:34.183Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"d","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:34.419Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:39:34.638Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"viet","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:40:10.661Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"viet nam","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:40:23.685Z"}
+{"level":"info","limit":"20","maTheLoai":"1","message":"Calling sp_tim_kiem_sach_nang_cao","nguonGoc":"viet nam","offset":"0","order":"DESC","sortBy":"tenSach","timestamp":"2025-11-10T14:40:25.958Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T14:40:37.781Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T14:40:41.634Z","userId":121}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T14:40:41.642Z","userId":121,"userType":"reader"}
+{"level":"info","maDocGia":121,"message":"Fetching borrow history for reader","timestamp":"2025-11-10T14:40:41.644Z"}
+{"count":0,"level":"info","maDocGia":121,"message":"Borrow history fetched successfully","timestamp":"2025-11-10T14:40:41.669Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T14:40:42.462Z","userId":121}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T14:40:42.466Z","userId":121,"userType":"reader"}
+{"level":"info","message":"Fetching profile","timestamp":"2025-11-10T14:40:42.467Z","userId":121,"userType":"reader"}
+{"level":"info","message":"Profile fetched successfully","timestamp":"2025-11-10T14:40:42.469Z","userId":121}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:40:46.816Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:40:46.818Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T14:40:46.821Z","userId":121}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:40:46.841Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T14:40:46.843Z","userId":121,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T14:40:46.843Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T14:40:46.869Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:40:46.870Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:40:46.877Z"}

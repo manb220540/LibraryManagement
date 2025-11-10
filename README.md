@@ -87,21 +87,21 @@ Dự án sử dụng MySQL và Sequelize để quản lý cơ sở dữ liệu.
 
 Sử dụng MySQL client (hoặc công cụ như phpMyAdmin/MySQL Workbench) để tạo người dùng và database theo thông số trong file .env:
 
-#### 1. Tạo người dùng:
+#### 5.1. Tạo người dùng:
 
 ```bash
 -- Tạo người dùng mới với mật khẩu
 CREATE USER 'librarymanagement'@'127.0.0.1' IDENTIFIED BY 'librarymanagement';
 ```
 
-#### 2. Tạo database:
+#### 5.2. Tạo database:
 
 ```bash
 -- Tạo database
 CREATE DATABASE library_db;
 ```
 
-#### 3. Cấp quyền:
+#### 5.3. Cấp quyền:
 
 ```bash
 -- Cấp toàn bộ quyền cho người dùng trên database này
