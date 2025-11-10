@@ -6112,3 +6112,721 @@
 {"level":"info","message":"User authenticated","timestamp":"2025-11-09T10:44:06.442Z","userId":1,"userType":"reader"}
 {"level":"info","maDocGia":1,"message":"Fetching borrow history for reader","timestamp":"2025-11-09T10:44:06.442Z"}
 {"count":7,"level":"info","maDocGia":1,"message":"Borrow history fetched successfully","timestamp":"2025-11-09T10:44:06.448Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-09T10:59:32.209Z","userId":1}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-09T10:59:32.570Z","userId":1,"userType":"reader"}
+{"level":"info","maDocGia":1,"message":"Fetching borrow history for reader","timestamp":"2025-11-09T10:59:32.570Z"}
+{"count":7,"level":"info","maDocGia":1,"message":"Borrow history fetched successfully","timestamp":"2025-11-09T10:59:32.602Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-09T10:59:35.207Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-09T10:59:35.215Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-09T10:59:35.225Z","userId":1}
+{"count":2,"level":"info","message":"Authors fetched","timestamp":"2025-11-09T10:59:35.251Z"}
+{"count":2,"level":"info","message":"Publishers fetched","timestamp":"2025-11-09T10:59:35.270Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-09T10:59:35.271Z","userId":1,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-09T10:59:35.275Z"}
+{"count":1,"level":"info","message":"Categories fetched","timestamp":"2025-11-09T10:59:35.284Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-09T10:59:35.303Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:20:38.475Z","userId":1}
+{"level":"warn","message":"User not found","role":"admin","timestamp":"2025-11-10T13:20:38.918Z","userId":1}
+{"level":"info","message":"Đăng ký độc giả mới: trantieuman4466@gmail.com","timestamp":"2025-11-10T13:21:39.483Z"}
+{"level":"info","message":"Đăng ký độc giả thành công: trantieuman4466@gmail.com","timestamp":"2025-11-10T13:21:39.645Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:21:39.666Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:21:39.674Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T13:21:39.679Z","userId":121}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:21:39.701Z","userId":121,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T13:21:39.701Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T13:21:39.717Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:21:39.723Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:21:39.724Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:21:39.860Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"20","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:21:51.731Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"40","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:21:53.421Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"60","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:21:54.593Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"DESC","sortBy":"tenSach","timestamp":"2025-11-10T13:22:00.518Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:22:03.100Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:04.603Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:04.609Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:10.050Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:10.059Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:12.844Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:12.849Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:15.316Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:15.319Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:16.461Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:16.466Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:19.364Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:19.368Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:20.207Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:20.211Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:22:22.027Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:22:22.039Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:22:26.686Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:22:26.701Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:22:29.759Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:22:29.764Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:22:30.442Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:22:30.446Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:22:30.660Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:22:30.664Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:22:33.869Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:22:38.685Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"maTheLoai","timestamp":"2025-11-10T13:22:41.531Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"maTheLoai","timestamp":"2025-11-10T13:22:43.241Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T13:22:44.871Z","userId":121}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:22:44.876Z","userId":121,"userType":"reader"}
+{"level":"info","maDocGia":121,"message":"Fetching borrow history for reader","timestamp":"2025-11-10T13:22:44.876Z"}
+{"count":0,"level":"info","maDocGia":121,"message":"Borrow history fetched successfully","timestamp":"2025-11-10T13:22:44.901Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:22:48.713Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:48.720Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T13:22:48.723Z","userId":121}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:22:48.727Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:48.731Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:22:48.734Z","userId":121,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T13:22:48.734Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T13:22:48.736Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:22:48.893Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:22:54.388Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:22:54.395Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T13:23:23.416Z","userId":121}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:23:23.428Z","userId":121,"userType":"reader"}
+{"level":"info","maDocGia":121,"message":"Fetching borrow history for reader","timestamp":"2025-11-10T13:23:23.428Z"}
+{"count":0,"level":"info","maDocGia":121,"message":"Borrow history fetched successfully","timestamp":"2025-11-10T13:23:23.435Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:23:24.582Z"}
+{"level":"info","message":"Đăng nhập nhân viên: admin","timestamp":"2025-11-10T13:25:25.964Z"}
+{"level":"info","message":"Nhân viên đăng nhập thành công: admin","timestamp":"2025-11-10T13:25:26.080Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:25:26.103Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:25:26.116Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Admin access granted","timestamp":"2025-11-10T13:25:26.116Z","userId":235}
+{"level":"info","message":"Fetching all borrow requests","timestamp":"2025-11-10T13:25:26.116Z"}
+{"count":0,"level":"info","message":"Borrow requests fetched successfully","timestamp":"2025-11-10T13:25:26.132Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:25:30.281Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:25:30.288Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:25:30.291Z","userId":235}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:25:30.324Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:25:30.326Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T13:25:30.326Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T13:25:30.328Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:25:30.336Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:25:30.345Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:25:30.355Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:25:37.013Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:25:37.034Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:25:43.196Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:25:43.211Z"}
+{"level":"info","limit":"10","maSach":"2","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:48.355Z"}
+{"level":"info","limit":"10","maSach":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:48.473Z"}
+{"level":"info","limit":"10","maSach":"203","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:48.683Z"}
+{"level":"info","limit":"10","maSach":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:49.884Z"}
+{"level":"info","limit":"10","maSach":"2","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:50.145Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:25:50.433Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:25:50.447Z"}
+{"level":"info","limit":"10","maSach":"1","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:51.244Z"}
+{"level":"info","limit":"10","maSach":"10","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:51.512Z"}
+{"level":"info","limit":"10","maSach":"101","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:51.637Z"}
+{"level":"info","limit":"10","maSach":"10","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:55.220Z"}
+{"level":"info","limit":"10","maSach":"1","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:55.476Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:25:55.904Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:25:55.917Z"}
+{"level":"info","limit":"10","maTacGia":"26","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:25:58.470Z"}
+{"level":"info","limit":"10","maTacGia":"43","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"namXuatBan","timestamp":"2025-11-10T13:26:04.703Z"}
+{"level":"info","limit":"10","maTacGia":"43","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"DESC","sortBy":"soLuongHienCo","timestamp":"2025-11-10T13:26:12.308Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:26:14.793Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:26:14.813Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:26:14.824Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:26:14.832Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:26:21.308Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:26:21.312Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:26:27.547Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:26:27.555Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:26:30.574Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:26:30.578Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:26:42.995Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:26:43.018Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Admin access granted","timestamp":"2025-11-10T13:26:43.018Z","userId":235}
+{"level":"info","message":"Fetching all readers","timestamp":"2025-11-10T13:26:43.018Z","userId":235}
+{"count":11,"level":"info","message":"Readers fetched successfully","timestamp":"2025-11-10T13:26:43.020Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:26:55.049Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:26:55.057Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Admin access granted","timestamp":"2025-11-10T13:26:55.058Z","userId":235}
+{"level":"info","message":"Fetching all borrow requests","timestamp":"2025-11-10T13:26:55.058Z"}
+{"count":0,"level":"info","message":"Borrow requests fetched successfully","timestamp":"2025-11-10T13:26:55.065Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:26:56.175Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:26:56.180Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Admin access granted","timestamp":"2025-11-10T13:26:56.180Z","userId":235}
+{"level":"info","message":"Fetching all staff","timestamp":"2025-11-10T13:26:56.181Z","userId":235}
+{"count":5,"level":"info","message":"Staff fetched successfully","timestamp":"2025-11-10T13:26:56.183Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:28:10.903Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:28:10.916Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Admin access granted","timestamp":"2025-11-10T13:28:10.917Z","userId":235}
+{"level":"info","message":"Fetching all borrow requests","timestamp":"2025-11-10T13:28:10.917Z"}
+{"count":0,"level":"info","message":"Borrow requests fetched successfully","timestamp":"2025-11-10T13:28:10.927Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:28:11.712Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:28:11.713Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Admin access granted","timestamp":"2025-11-10T13:28:11.714Z","userId":235}
+{"level":"info","message":"Fetching all readers","timestamp":"2025-11-10T13:28:11.714Z","userId":235}
+{"count":11,"level":"info","message":"Readers fetched successfully","timestamp":"2025-11-10T13:28:11.721Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:28:23.226Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:28:23.237Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Admin access granted","timestamp":"2025-11-10T13:28:23.237Z","userId":235}
+{"level":"info","message":"Fetching all borrow requests","timestamp":"2025-11-10T13:28:23.237Z"}
+{"count":0,"level":"info","message":"Borrow requests fetched successfully","timestamp":"2025-11-10T13:28:23.242Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:28:24.181Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:28:24.183Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Admin access granted","timestamp":"2025-11-10T13:28:24.184Z","userId":235}
+{"level":"info","message":"Fetching all staff","timestamp":"2025-11-10T13:28:24.184Z","userId":235}
+{"count":5,"level":"info","message":"Staff fetched successfully","timestamp":"2025-11-10T13:28:24.186Z"}
+{"diaChi":"","level":"info","limit":"10","message":"Searching authors advanced","order":"ASC","page":"1","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T13:28:25.253Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:28:28.966Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:28:28.968Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:28:28.969Z","userId":235}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:28:28.971Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:28:29.019Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:28:29.023Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T13:28:29.023Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T13:28:29.024Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:28:29.195Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:28:29.238Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:31:59.510Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:31:59.533Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:31:59.543Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:32:00.356Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T13:32:00.356Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:32:00.361Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:32:00.363Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T13:32:00.377Z"}
+{"level":"info","limit":"10","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:32:00.427Z"}
+{"level":"info","limit":"10","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"DESC","sortBy":"tenSach","timestamp":"2025-11-10T13:32:05.714Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:32:28.066Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:32:28.079Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:32:28.086Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:32:28.121Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T13:32:28.122Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:32:28.127Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:32:28.128Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T13:32:28.130Z"}
+{"level":"info","limit":"10","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:32:28.139Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:42:04.037Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:42:04.043Z"}
+{"level":"info","message":"Token decoded","role":"admin","timestamp":"2025-11-10T13:42:04.084Z","userId":235}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:42:04.322Z","userId":235,"userType":"staff"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T13:42:04.323Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T13:42:04.578Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:42:04.661Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:42:04.664Z"}
+{"level":"info","limit":"10","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T13:42:04.676Z"}
+{"level":"info","limit":"10","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:42:08.412Z"}
+{"level":"info","limit":"10","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:42:14.869Z"}
+{"level":"info","limit":"10","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:42:18.167Z"}
+{"level":"info","message":"Đăng nhập nhân viên: trantieuman466@gmail.com","timestamp":"2025-11-10T13:42:33.686Z"}
+{"level":"warn","message":"Tên nhân viên không tồn tại: trantieuman466@gmail.com","timestamp":"2025-11-10T13:42:33.697Z"}
+{"level":"info","message":"Đăng nhập nhân viên: trantieuman4466@gmail.com","timestamp":"2025-11-10T13:42:37.987Z"}
+{"level":"warn","message":"Tên nhân viên không tồn tại: trantieuman4466@gmail.com","timestamp":"2025-11-10T13:42:37.990Z"}
+{"level":"info","message":"Đăng nhập nhân viên: trantieuman4466@gmail.com","timestamp":"2025-11-10T13:42:39.453Z"}
+{"level":"warn","message":"Tên nhân viên không tồn tại: trantieuman4466@gmail.com","timestamp":"2025-11-10T13:42:39.463Z"}
+{"level":"info","message":"Đăng nhập độc giả: trantieuman4466@gmail.com","timestamp":"2025-11-10T13:42:56.306Z"}
+{"level":"info","message":"Độc giả đăng nhập thành công: trantieuman4466@gmail.com","timestamp":"2025-11-10T13:42:56.420Z"}
+{"level":"info","message":"Fetching all books","timestamp":"2025-11-10T13:42:56.447Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:42:56.451Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T13:42:56.454Z","userId":121}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:42:56.462Z"}
+{"count":100,"level":"info","message":"Books fetched","timestamp":"2025-11-10T13:42:56.490Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:42:56.497Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T13:42:56.499Z","userId":121,"userType":"reader"}
+{"level":"info","maDocGia":121,"message":"Fetching borrow history for reader","timestamp":"2025-11-10T13:42:56.499Z"}
+{"count":0,"level":"info","maDocGia":121,"message":"Borrow history fetched successfully","timestamp":"2025-11-10T13:42:56.507Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:42:56.508Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:42:58.713Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:43:02.925Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:43:05.188Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:43:05.620Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:43:06.351Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"maTheLoai","timestamp":"2025-11-10T13:43:09.241Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"maTheLoai","timestamp":"2025-11-10T13:43:10.569Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:43:12.789Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:43:15.610Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:45:56.268Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:45:56.394Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:46:00.583Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:46:00.607Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:46:01.919Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:46:01.925Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:46:04.484Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:46:04.488Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:46:05.351Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:46:05.355Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:13.440Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:13.454Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:16.303Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:16.308Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:17.279Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:17.287Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:19.983Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:19.988Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:25.160Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:25.185Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:26.437Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:26.441Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:29.116Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:29.120Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:29.868Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:29.872Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:30.485Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:30.489Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:34.876Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:34.890Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:35.988Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:35.993Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:36.768Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:36.771Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:48:36.773Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:48:36.777Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:48:57.859Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:48:57.901Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:49:00.012Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:49:00.039Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:49:04.296Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:49:04.314Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:49:05.587Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:49:05.592Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:49:06.337Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:49:06.341Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:49:06.344Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:49:06.349Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:49:07.727Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:49:07.736Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:49:11.845Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:49:11.859Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:49:12.972Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:49:12.976Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:28.312Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:28.329Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:31.118Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:31.150Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:32.145Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:32.151Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:35.926Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:35.929Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:40.285Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:40.295Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:41.288Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:41.293Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:42.292Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:42.296Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:44.842Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:44.846Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:45.706Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:51:45.711Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:49.839Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:49.847Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:54.732Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:54.755Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:55.810Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:55.814Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:56.372Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:56.376Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:56.571Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:56.576Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:56.758Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:56.761Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:56.955Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:56.959Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:57.141Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:57.145Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:57.341Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:57.345Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:57.520Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:57.523Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:51:57.704Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:51:57.707Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:51:59.989Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:52:00.019Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:52:01.299Z"}
+{"error":"PROCEDURE library_db.sp_tim_kiem_the_loai_nang_cao does not exist","level":"error","message":"Search categories advanced error","timestamp":"2025-11-10T13:52:01.306Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:52:04.803Z"}
+{"error":"PROCEDURE library_db.sp_tim_kiem_the_loai_nang_cao does not exist","level":"error","message":"Search categories advanced error","timestamp":"2025-11-10T13:52:04.804Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:54:30.153Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:54:34.715Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T13:54:35.893Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:38.045Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:38.056Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:42.133Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:42.152Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:43.245Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:43.259Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:45.624Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:45.630Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:46.876Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:46.880Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:49.511Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:49.514Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:50.357Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:50.361Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:51.221Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:51.226Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:51.553Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:51.557Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:51.755Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:51.759Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:54.710Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:54.714Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:56.043Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:56.047Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:54:59.817Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:54:59.832Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:11.110Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:11.139Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:15.493Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:15.497Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:16.710Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:16.713Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:18.055Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:18.058Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:20.175Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:20.179Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:21.259Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:21.262Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:23.360Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:23.365Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:24.305Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:24.309Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:26.476Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:26.480Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:27.543Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:27.548Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:29.826Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:29.831Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:55:30.702Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:55:30.706Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:13.893Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:13.911Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:16.637Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:16.651Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:18.771Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:18.776Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:20.013Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:20.018Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:23.357Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:23.372Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:24.657Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:24.660Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:27.193Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:27.197Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:28.986Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:28.990Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:29.937Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:29.941Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:30.898Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:30.902Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:31.108Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:31.112Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:31.297Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:31.303Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T13:59:31.513Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T13:59:31.518Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:44.076Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:44.107Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:50.522Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:50.545Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:51.923Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:51.928Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:52.721Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:52.726Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:53.321Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:53.325Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:53.518Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:53.523Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:53.688Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:53.692Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:53.868Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:53.872Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:54.033Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:54.038Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:54.201Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:54.205Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T13:59:54.383Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T13:59:54.387Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:15.405Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:15.423Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:18.116Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:18.135Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:19.541Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:19.545Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:21.689Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:21.693Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:22.834Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:22.840Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:24.851Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:24.858Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:29.844Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:29.857Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:30.956Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:30.961Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:33.270Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:33.274Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:34.233Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:34.237Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:34.785Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:34.789Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:35.000Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:35.004Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:35.166Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:35.170Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:35.365Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:35.369Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:35.531Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:35.534Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:35.714Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:35.717Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:37.288Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:37.292Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:37.751Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:37.754Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:38.093Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:38.097Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:38.358Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:38.363Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:38.649Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:38.655Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:38.842Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:38.847Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:05:41.202Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:05:41.223Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:05:45.666Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:05:45.685Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:05:46.780Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:05:46.783Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:05:48.421Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:48.422Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:05:48.426Z"}
+{"level":"info","message":"Token decoded","role":"reader","timestamp":"2025-11-10T14:05:48.442Z","userId":121}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:48.450Z"}
+{"level":"info","message":"User authenticated","timestamp":"2025-11-10T14:05:48.458Z","userId":121,"userType":"reader"}
+{"level":"info","message":"Fetching all categories","timestamp":"2025-11-10T14:05:48.458Z"}
+{"count":10,"level":"info","message":"Categories fetched","timestamp":"2025-11-10T14:05:48.467Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"ASC","sortBy":"tenSach","timestamp":"2025-11-10T14:05:48.477Z"}
+{"level":"info","limit":"20","message":"Calling sp_tim_kiem_sach_nang_cao","offset":"0","order":"DESC","sortBy":"tenSach","timestamp":"2025-11-10T14:05:52.751Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:05:54.697Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:05:54.701Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:05:57.194Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:05:57.200Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T14:05:58.766Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"DESC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T14:06:03.201Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"tenTheLoai","timestamp":"2025-11-10T14:06:05.590Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"maTheLoai","timestamp":"2025-11-10T14:06:07.425Z"}
+{"level":"info","limit":"12","message":"Searching categories advanced","order":"ASC","page":"1","sortBy":"maTheLoai","timestamp":"2025-11-10T14:06:08.236Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:15.881Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:15.908Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:20.333Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:20.392Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:22.840Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:22.851Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:24.078Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:24.094Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:26.543Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:26.548Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:27.877Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:27.882Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:28.574Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:28.580Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:28.775Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:28.793Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:28.954Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:28.958Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:29.156Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:29.160Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:29.323Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:29.327Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:33.053Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:33.074Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:34.858Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:34.887Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:36.761Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:36.765Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:36.768Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:36.773Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:37.475Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:37.479Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:37.482Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:37.487Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:38.652Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:38.658Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:38.661Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:38.670Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:38.823Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:38.826Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:38.828Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:38.842Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.272Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.276Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.277Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.283Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.439Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.442Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.449Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.460Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.605Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.609Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.612Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.618Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.760Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.767Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.769Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.774Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.945Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.949Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:10:39.952Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:10:39.956Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:24:35.025Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:24:35.076Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:24:37.194Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:24:37.199Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:24:39.573Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:24:39.602Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:24:40.596Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:24:40.600Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:24:43.096Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:24:43.102Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:24:43.995Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:24:44.002Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:03.662Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:03.688Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:03.693Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:03.700Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:04.596Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:04.602Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:04.611Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:04.615Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:04.844Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:04.849Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:04.853Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:04.858Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:05.039Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:05.044Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:05.049Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:05.058Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:17.195Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:17.231Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:18.499Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:18.508Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:22.137Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:22.141Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:25:26.210Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:25:26.217Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"","sortBy":"maTacGia","tenTacGia":"ssfs","timestamp":"2025-11-10T14:25:58.188Z"}
+{"error":"Incorrect number of arguments for PROCEDURE library_db.sp_tim_kiem_tac_gia_nang_cao; expected 8, got 10","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:25:58.195Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:26:00.691Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:26:00.728Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"sdfswwds","timestamp":"2025-11-10T14:26:05.910Z"}
+{"error":"Incorrect number of arguments for PROCEDURE library_db.sp_tim_kiem_tac_gia_nang_cao; expected 8, got 10","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:26:05.915Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"sdfswwds","timestamp":"2025-11-10T14:26:11.051Z"}
+{"error":"Incorrect number of arguments for PROCEDURE library_db.sp_tim_kiem_tac_gia_nang_cao; expected 8, got 10","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:26:11.057Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"sdfswwds","timestamp":"2025-11-10T14:26:13.260Z"}
+{"error":"Incorrect number of arguments for PROCEDURE library_db.sp_tim_kiem_tac_gia_nang_cao; expected 8, got 10","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:26:13.263Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"sdfswwds","timestamp":"2025-11-10T14:26:14.742Z"}
+{"error":"Incorrect number of arguments for PROCEDURE library_db.sp_tim_kiem_tac_gia_nang_cao; expected 8, got 10","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:26:14.744Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:28:49.151Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:28:49.209Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"aeraewr","timestamp":"2025-11-10T14:28:56.025Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:29:00.815Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:29:00.821Z"}
+{"level":"info","limit":"12","maTacGia":"5","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:03.615Z"}
+{"level":"info","limit":"12","maTacGia":"56","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:03.788Z"}
+{"level":"info","limit":"12","maTacGia":"5","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:04.561Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:29:04.946Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:29:04.956Z"}
+{"level":"info","limit":"12","maTacGia":"3","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:06.271Z"}
+{"level":"info","limit":"12","maTacGia":"33","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:06.476Z"}
+{"level":"info","limit":"12","maTacGia":"3","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:09.933Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:29:10.119Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:29:10.181Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:29:13.375Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:29:13.380Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:29:14.412Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:29:14.415Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:29:15.095Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:29:15.099Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:29:15.319Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:29:15.324Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:29:23.703Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:29:23.709Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:28.714Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:28.729Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nM","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:30.070Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet n","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:30.081Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:30.088Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:30.099Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nAM","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:31.682Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:31.691Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nA","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:31.694Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:31.698Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet n","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:31.870Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:31.872Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:35.545Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:35.547Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:36.359Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:36.361Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:43.615Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:43.623Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:44.147Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:44.149Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:44.358Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:44.360Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:29:44.543Z"}
+{"error":"Unknown column 'tg.quocTich' in 'where clause'","level":"error","message":"Search authors advanced error","timestamp":"2025-11-10T14:29:44.545Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:34:40.053Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:34:43.117Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:34:46.499Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:34:46.514Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"fe","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:34:52.068Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"feyujtyht","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:35:00.497Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"feyujtyht","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:35:01.249Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"viey","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:35:05.121Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"vie","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:35:05.741Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"viet","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:35:06.657Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"","timestamp":"2025-11-10T14:35:08.693Z"}
+{"level":"info","limit":"12","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"geg","timestamp":"2025-11-10T14:35:14.428Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"viet nam","sortBy":"tenTacGia","tenTacGia":"geg","timestamp":"2025-11-10T14:35:18.394Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"ASC","page":"1","quocTich":"viet namfe","sortBy":"tenTacGia","tenTacGia":"geg","timestamp":"2025-11-10T14:35:21.483Z"}
+{"level":"info","limit":"12","maTacGia":"","message":"Searching authors advanced","order":"DESC","page":"1","quocTich":"viet namfe","sortBy":"tenTacGia","tenTacGia":"geg","timestamp":"2025-11-10T14:35:24.835Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:35:25.536Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:35:25.540Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:35:25.545Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:35:25.554Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:35:27.982Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:35:28.003Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:35:28.694Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:35:28.698Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:35:29.258Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:35:29.263Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:35:29.459Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:35:29.464Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:35:29.658Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:35:29.662Z"}
+{"level":"info","message":"Fetching all authors","timestamp":"2025-11-10T14:35:29.859Z"}
+{"count":51,"level":"info","message":"Authors fetched","timestamp":"2025-11-10T14:35:29.862Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:35:35.603Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:35:35.617Z"}
+{"diaChi":"sfsegd","level":"info","limit":"12","message":"Searching publishers advanced","order":"ASC","page":"1","sortBy":"tenNXB","timestamp":"2025-11-10T14:35:40.885Z"}
+{"diaChi":"sfsegd","level":"info","limit":"12","maNXB":"","message":"Searching publishers advanced","order":"ASC","page":"1","sortBy":"tenNXB","timestamp":"2025-11-10T14:35:46.330Z"}
+{"diaChi":"sfsegd","level":"info","limit":"12","maNXB":"","message":"Searching publishers advanced","order":"ASC","page":"1","sortBy":"tenNXB","tenNXB":"fgrgr","timestamp":"2025-11-10T14:35:49.993Z"}
+{"diaChi":"sfsegd","level":"info","limit":"12","maNXB":"","message":"Searching publishers advanced","order":"ASC","page":"2","sortBy":"tenNXB","tenNXB":"fgrgr","timestamp":"2025-11-10T14:35:53.812Z"}
+{"diaChi":"sfsegd","level":"info","limit":"12","maNXB":"","message":"Searching publishers advanced","order":"ASC","page":"3","sortBy":"tenNXB","tenNXB":"fgrgr","timestamp":"2025-11-10T14:35:54.383Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:35:56.617Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:35:56.622Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:35:56.625Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:35:56.629Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:05.879Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:05.883Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:09.959Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:09.964Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:13.367Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:13.373Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:14.574Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:14.577Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:16.858Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:16.862Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:17.425Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:17.429Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:19.861Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:19.864Z"}
+{"level":"info","message":"Fetching all publishers with books","timestamp":"2025-11-10T14:36:20.362Z"}
+{"count":34,"level":"info","message":"Publishers fetched","timestamp":"2025-11-10T14:36:20.366Z"}

@@ -116,7 +116,7 @@
 //     const {
 //       tenTacGia,
 //       maTacGia,
-//       quocTich,
+//       diaChi,
 //       namMin,
 //       namMax,
 //       sortBy = 'tenTacGia',
@@ -131,14 +131,14 @@
 //     // --- 1. Gọi procedure ---
 //     await sequelize.query(
 //       `CALL sp_tim_kiem_tac_gia_nang_cao(
-//         :tenTacGia, :maTacGia, :quocTich, :namMin, :namMax,
+//         :tenTacGia, :maTacGia, :diaChi, :namMin, :namMax,
 //         :sortBy, :order, :limit, :offset, @total
 //       )`,
 //       {
 //         replacements: {
 //           tenTacGia: tenTacGia || null,
 //           maTacGia: maTacGia ? parseInt(maTacGia) : null,
-//           quocTich: quocTich || null,
+//           diaChi: diaChi || null,
 //           namMin: namMin ? parseInt(namMin) : null,
 //           namMax: namMax ? parseInt(namMax) : null,
 //           sortBy,
@@ -157,7 +157,7 @@
 //     const where = [];
 //     if (tenTacGia) where.push(`tg.tenTacGia LIKE '%${tenTacGia}%'`);
 //     if (maTacGia) where.push(`tg.maTacGia = ${maTacGia}`);
-//     if (quocTich) where.push(`tg.quocTich LIKE '%${quocTich}%'`);
+//     if (diaChi) where.push(`tg.diaChi LIKE '%${diaChi}%'`);
 //     if (namMin) where.push(`(s.namXuatBan >= ${namMin} OR s.namXuatBan IS NULL)`);
 //     if (namMax) where.push(`(s.namXuatBan <= ${namMax} OR s.namXuatBan IS NULL)`);
 
@@ -371,7 +371,7 @@ const searchAuthorsAdvanced = async (req, res) => {
     const {
       tenTacGia,
       maTacGia,
-      quocTich,
+      diaChi,
       namMin,
       namMax,
       sortBy = 'tenTacGia',
@@ -385,14 +385,14 @@ const searchAuthorsAdvanced = async (req, res) => {
 
     await sequelize.query(
       `CALL sp_tim_kiem_tac_gia_nang_cao(
-        :tenTacGia, :maTacGia, :quocTich, :namMin, :namMax,
+        :tenTacGia, :maTacGia, :diaChi, :namMin, :namMax,
         :sortBy, :order, :limit, :offset, @total
       )`,
       {
         replacements: {
           tenTacGia: tenTacGia || null,
           maTacGia: maTacGia ? parseInt(maTacGia) : null,
-          quocTich: quocTich || null,
+          diaChi: diaChi || null,
           namMin: namMin ? parseInt(namMin) : null,
           namMax: namMax ? parseInt(namMax) : null,
           sortBy,
@@ -410,7 +410,7 @@ const searchAuthorsAdvanced = async (req, res) => {
     const where = [];
     if (tenTacGia) where.push(`tg.tenTacGia LIKE '%${tenTacGia.replace(/'/g, "''")}%'`);
     if (maTacGia) where.push(`tg.maTacGia = ${parseInt(maTacGia)}`);
-    if (quocTich) where.push(`tg.quocTich LIKE '%${quocTich.replace(/'/g, "''")}%'`);
+    if (diaChi) where.push(`tg.diaChi LIKE '%${diaChi.replace(/'/g, "''")}%'`);
     if (namMin) where.push(`(s.namXuatBan >= ${parseInt(namMin)} OR s.namXuatBan IS NULL)`);
     if (namMax) where.push(`(s.namXuatBan <= ${parseInt(namMax)} OR s.namXuatBan IS NULL)`);
 
@@ -466,6 +466,8 @@ const searchAuthorsAdvanced = async (req, res) => {
     res.status(500).json({ message: 'Lỗi tìm kiếm tác giả' });
   }
 };
+
+
 
 module.exports = {
   getAllAuthors,
