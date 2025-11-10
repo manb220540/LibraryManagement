@@ -356,22 +356,13 @@ export default {
         params.limit = pagination.value.limit;
         params.offset = pagination.value.offset;
 
-        const hasFilter = Object.keys(params).some(k => !['sortBy','order','limit','offset'].includes(k));
-        let result;
-
-        if (hasFilter) {
-          result = await store.dispatch('book/fetchBooksAdvanced', params);
-        } else {
-          result = await store.dispatch('book/fetchBooks', {
-            limit: params.limit, offset: params.offset, sortBy: params.sortBy, order: params.order
-          });
-        }
-
-        pagination.value.total = result.total || result.data.length || 0;
+        const result = await store.dispatch('book/fetchBooksAdvanced', params);
+        pagination.value.total = result.total || result.data?.length || 0;
       } catch (err) {
         showError('Không thể tải danh sách sách');
       }
     };
+
 
     const resetFilters = () => {
       filters.value = { tenSach: '', maSach: '', maTacGia: null, maNXB: null, maTheLoai: null, namXuatBanMin: null, namXuatBanMax: null, nguonGoc: '' };
