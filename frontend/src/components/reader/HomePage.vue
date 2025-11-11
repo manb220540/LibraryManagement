@@ -4,71 +4,67 @@
 
     
     <div class="hero-section">
-      <div class="container">
-        <div class="row align-items-center min-vh-50">
-          <div class="col-lg-8 mx-auto text-center">
-            <h1 class="hero-title mb-3">Thư viện sách CTU</h1>
-            <p class="hero-subtitle mb-4">
-              Khám phá kho tàng sách phong phú và tận hưởng trải nghiệm đọc sách tuyệt vời
-            </p>
+      <div class="row align-items-center min-vh-50">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="hero-title mb-3">Thư viện sách CTU</h1>
+          <p class="hero-subtitle mb-4">
+            Khám phá kho tàng sách phong phú và tận hưởng trải nghiệm đọc sách tuyệt vời
+          </p>
 
-            <!-- Welcome message when logged in -->
-            <!-- <div v-else class="welcome-message mb-5">
-              <p class="text-muted">
-                <i class="fas fa-user-circle me-2"></i>
-                Chào mừng bạn trở lại!
-              </p>
-            </div> -->
-          </div>
+          <!-- Welcome message when logged in -->
+          <!-- <div v-else class="welcome-message mb-5">
+            <p class="text-muted">
+              <i class="fas fa-user-circle me-2"></i>
+              Chào mừng bạn trở lại!
+            </p>
+          </div> -->
         </div>
       </div>
     </div>
 
     <!-- Stats Section -->
     <div class="stats-section py-5">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-6 col-md-3">
-            <div class="stat-card">
-              <div class="stat-icon text-success">
-                <i class="fas fa-book"></i>
-              </div>
-              <h3 class="stat-number">{{ totalBooks }}</h3>
-              <p class="stat-label">Số sách</p>
+      <div class="row g-4 px-4">
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon text-success">
+              <i class="fas fa-book"></i>
             </div>
+            <h3 class="stat-number">{{ totalBooks }}</h3>
+            <p class="stat-label">Số sách</p>
           </div>
+        </div>
 
-          <div class="col-6 col-md-3">
-            <div class="stat-card">
-              <div class="stat-icon text-warning">
-                <i class="fas fa-building"></i>
-              </div>
-              <h3 class="stat-number">{{ totalPublishers }}</h3>
-              <p class="stat-label">Nhà xuất bản</p>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon text-warning">
+              <i class="fas fa-building"></i>
             </div>
+            <h3 class="stat-number">{{ totalPublishers }}</h3>
+            <p class="stat-label">Nhà xuất bản</p>
           </div>
+        </div>
 
-          <div class="col-6 col-md-3">
-            <div class="stat-card">
-              <div class="stat-icon text-primary">
-                <i class="fas fa-pen-fancy"></i>
-              </div>
-              <h3 class="stat-number">{{ totalAuthors }}</h3>
-              <p class="stat-label">Tác giả</p>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon text-primary">
+              <i class="fas fa-pen-fancy"></i>
             </div>
+            <h3 class="stat-number">{{ totalAuthors }}</h3>
+            <p class="stat-label">Tác giả</p>
           </div>
+        </div>
 
-          <div class="col-6 col-md-3">
-            <div class="stat-card" :class="{ 'stat-card-locked': !isLoggedIn }">
-              <div class="stat-icon" :class="isLoggedIn ? 'text-danger' : 'text-muted'">
-                <i :class="isLoggedIn ? 'fas fa-bookmark' : 'fas fa-lock'"></i>
-              </div>
-              <h3 class="stat-number" v-if="isLoggedIn">{{ approvedBooks }}</h3>
-              <h3 class="stat-number text-muted" v-else>—</h3>
-              <p class="stat-label">
-                {{ isLoggedIn ? 'Sách đã mượn' : 'Đăng nhập để xem' }}
-              </p>
+        <div class="col-6 col-md-3">
+          <div class="stat-card" :class="{ 'stat-card-locked': !isLoggedIn }">
+            <div class="stat-icon" :class="isLoggedIn ? 'text-danger' : 'text-muted'">
+              <i :class="isLoggedIn ? 'fas fa-bookmark' : 'fas fa-lock'"></i>
             </div>
+            <h3 class="stat-number" v-if="isLoggedIn">{{ approvedBooks }}</h3>
+            <h3 class="stat-number text-muted" v-else>—</h3>
+            <p class="stat-label">
+              {{ isLoggedIn ? 'Sách đã mượn' : 'Đăng nhập để xem' }}
+            </p>
           </div>
         </div>
       </div>
@@ -127,7 +123,7 @@ export default {
     const loading = ref(true);
 
     const isLoggedIn = computed(() => {
-      return store.getters['auth/isLoggedIn'] || false;
+      return store.getters['auth/isAuthenticated'] || false;
     });
 
     const totalBooks = computed(() => {
@@ -185,14 +181,14 @@ export default {
 <style scoped>
 .home-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: #ffffff;
 }
 
 /* Hero Section */
 .hero-section {
   background: url('@/assets/book2.jpg') no-repeat center center/cover;
   color: white;
-  padding: 4rem 0 3rem;
+  padding: 4rem 2rem 3rem;
   position: relative;
   overflow: hidden;
 }
@@ -324,7 +320,77 @@ export default {
   font-weight: 500;
 }
 
-/* Responsive Design */
+/* Guide Section */
+.guide-section {
+  background: linear-gradient(135deg, #F1E2A0 0%, #D3C4E1 100%);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #4299e1 0%, #667eea 100%);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.guide-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+
+.guide-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.guide-icon {
+  font-size: 3rem;
+  color: #4299e1;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: rgba(66, 153, 225, 0.1);
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guide-card:hover .guide-icon {
+  background: rgba(66, 153, 225, 0.1);
+}
+
+.guide-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.75rem;
+}
+
+.guide-text {
+  font-size: 0.95rem;
+  color: #718096;
+  line-height: 1.6;
+  margin: 0;
+}
 @media (max-width: 768px) {
   .hero-section {
     padding: 3rem 0 2rem;

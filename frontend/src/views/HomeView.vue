@@ -21,14 +21,6 @@
                 <i class="fas fa-sign-in-alt me-2"></i>Đăng nhập
               </button>
             </div>
-
-            <!-- Welcome message when logged in -->
-            <!-- <div v-else class="welcome-message mb-5">
-              <p class="text-muted">
-                <i class="fas fa-user-circle me-2"></i>
-                Chào mừng bạn trở lại!
-              </p>
-            </div> -->
           </div>
         </div>
       </div>
@@ -172,7 +164,7 @@ export default {
     const loading = ref(true);
 
     const isLoggedIn = computed(() => {
-      return store.getters['auth/isLoggedIn'] || false;
+      return store.getters['auth/isAuthenticated'] || false;
     });
 
     const totalBooks = computed(() => {
@@ -230,12 +222,9 @@ export default {
 <style scoped>
 .home-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #F1E2A0 0%, #D3C4E1 100%);
 }
-.home-page {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #F1E2A0 0%, #D3C4E1 100%); /* warm, pastel gradient */
-}
+
 
 /* Hero Section */
 .hero-section {

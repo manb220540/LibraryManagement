@@ -38,7 +38,7 @@
             <li class="nav-item">
               <a class="nav-link" :class="{ active: currentComponent === 'BorrowHistory' }"
                  @click.prevent="currentComponent = 'BorrowHistory'">
-                <span>Lịch sử <br>mượn sách</span>
+                <span>Lịch sử mượn sách</span>
               </a>
             </li>
           </ul>
@@ -214,11 +214,11 @@ export default {
   flex-direction: column;
 }
 
-.container.mt-4 {
+/* .container.mt-4 {
   flex: 1;
   overflow-y: auto;
   max-height: calc(100vh - 80px);
-}
+} */
 
 .navbar-custom {
   background: linear-gradient(135deg, #8B7355 0%, #6B5B95 100%);
