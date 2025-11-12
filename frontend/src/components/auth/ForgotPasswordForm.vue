@@ -1,40 +1,54 @@
 <template>
-  <div class="login-form">
+  <div class="login-container">
     <LoadingSpinner :show="loading" />
 
-    <div class="card">
+    <div class="login-card">
       <div class="card-header">
-        <h3 class="text-center">Quên Mật Khẩu</h3>
+        <h2 class="card-title">Đặt lại mật khẩu</h2>
+        <p class="card-subtitle">Nhập email để nhận hướng dẫn đặt lại mật khẩu</p>
       </div>
 
       <div class="card-body">
-        <div v-if="error" class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+        <!-- Error Alert -->
+        <div v-if="error" class="alert alert-danger" role="alert">
+          <i class="bi bi-exclamation-circle me-2"></i>
           {{ error }}
           <button type="button" class="btn-close" @click="clearError"></button>
         </div>
-        <div v-if="message" class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+
+        <!-- Success Alert -->
+        <div v-if="message" class="alert alert-success" role="alert">
+          <i class="bi bi-check-circle me-2"></i>
           {{ message }}
           <button type="button" class="btn-close" @click="clearMessage"></button>
         </div>
 
         <form @submit.prevent="requestPasswordReset" novalidate>
-          <div class="mb-3">
-            <label class="form-label">Email <span class="text-danger">*</span></label>
+          <div class="form-group">
+            <label class="form-label">
+              <i class="bi bi-envelope me-2"></i>Email <span class="required">*</span>
+            </label>
             <input
               type="email"
-              class="form-control"
+              class="form-input"
               :class="{ 'is-invalid': errors.email }"
               v-model="email"
+              placeholder="example@gmail.com"
               required
               @input="validateField('email')"
             >
-            <div class="invalid-feedback" v-if="errors.email">
-              {{ errors.email }}
+            <div class="error-message" v-if="errors.email">
+              <i class="bi bi-exclamation-circle"></i> {{ errors.email }}
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary w-100" :disabled="loading">
-            {{ loading ? 'Đang gửi...' : 'Gửi yêu cầu' }}
+          <button type="submit" class="btn-submit" :disabled="loading">
+            <span v-if="loading">
+              <i class="bi bi-hourglass-split me-2"></i>Đang gửi...
+            </span>
+            <span v-else>
+              <i class="bi bi-send me-2"></i>Gửi yêu cầu
+            </span>
           </button>
         </form>
       </div>
@@ -128,12 +142,215 @@ export default {
 </script>
 
 <style scoped>
-.login-form {
-  max-width: 400px;
-  margin: 2rem auto;
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #F1E2A0 0%, #D3C4E1 100%);
 }
-.position-relative .btn {
-  padding: 0.25rem 0.5rem;
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header {
+  padding: 2rem 2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(241, 226, 160, 0.3) 0%, rgba(211, 196, 225, 0.3) 100%);
+  text-align: center;
+}
+
+.card-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #5a4a6a;
+}
+
+.card-subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #8b7a9a;
+  font-weight: 500;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-danger {
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+}
+
+.alert-success {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: #5a4a6a;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.required {
+  color: #e53e3e;
+  margin-left: 0.25rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e8e1ef;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #4a4a4a;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #c4b5d1;
+  box-shadow: 0 0 0 4px rgba(211, 196, 225, 0.2);
+}
+
+.form-input.is-invalid {
+  border-color: #fc8181;
+}
+
+.form-input::placeholder {
+  color: #a0aec0;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #e53e3e;
   font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #F1E2A0 0%, #D3C4E1 100%);
+  color: #5a4a6a;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+}
+
+.btn-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.card-footer {
+  padding: 1.5rem 2rem;
+  background: rgba(241, 226, 160, 0.15);
+  text-align: center;
+  border-top: 1px solid rgba(211, 196, 225, 0.3);
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    border-radius: 16px;
+  }
+  .card-header,
+  .card-body,
+  .card-footer {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.85rem;
+  }
 }
 </style>
