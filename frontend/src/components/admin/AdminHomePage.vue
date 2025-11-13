@@ -37,14 +37,14 @@
           </div>
         </div>
       </div>
-      <!-- <div class="col-md-3">
+      <div class="col-md-3">
         <div class="card mb-3">
           <div class="card-body">
-            <h3 class="card-title text-danger">{{ totalBorrowedBooks }}</h3>
-            <p class="card-text">Số sách đã mượn</p>
+            <h3 class="card-title text-danger">{{ totalCategories }}</h3>
+            <p class="card-text">Tổng số thể loại</p>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -67,20 +67,18 @@ export default {
     const totalBooks = computed(() => store.getters['book/allBooks']?.length || 0);
     const totalAuthors = computed(() => store.getters['author/allAuthors']?.length || 0);
     const totalPublishers = computed(() => store.getters['publisher/allPublishers']?.length || 0);
-    const totalBorrowedBooks = computed(() => 
-      store.getters['borrow/allBorrowRequests']?.filter(req => req.trangThai === 'approved').length || 0
-    );
+    const totalCategories = computed(() => store.getters['category/allCategories']?.length || 0);
     const loading = computed(() => 
       store.getters['book/isLoading'] ||
       store.getters['author/isLoading'] ||
       store.getters['publisher/isLoading'] ||
-      store.getters['borrow/isLoading']
+      store.getters['category/isLoading']
     );
     const error = computed(() => 
       store.getters['book/error'] ||
       store.getters['author/error'] ||
       store.getters['publisher/error'] ||
-      store.getters['borrow/error']
+      store.getters['category/error']
     );
 
     // Lấy tất cả dữ liệu cần thiết
@@ -90,7 +88,8 @@ export default {
           store.dispatch('book/fetchBooks'),
           store.dispatch('author/fetchAuthors'),
           store.dispatch('publisher/fetchPublishers'),
-          store.dispatch('borrow/fetchBorrowRequests')
+          // store.dispatch('borrow/fetchBorrowRequests'),
+          store.dispatch('category/fetchCategories'),
         ]);
       } catch (error) {
         showError(error.message);
@@ -110,10 +109,10 @@ export default {
       totalBooks,
       totalAuthors,
       totalPublishers,
-      totalBorrowedBooks,
+      totalCategories,
       loading,
       error,
-      clearError
+      clearError,
     };
   }
 };

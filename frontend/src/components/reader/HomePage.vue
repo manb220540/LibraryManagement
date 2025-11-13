@@ -56,6 +56,16 @@
         </div>
 
         <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-icon text-danger">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3 class="stat-number">{{ totalCategories }}</h3>
+            <p class="stat-label">Thể loại</p>
+          </div>
+        </div>
+
+        <!-- <div class="col-6 col-md-3">
           <div class="stat-card" :class="{ 'stat-card-locked': !isLoggedIn }">
             <div class="stat-icon" :class="isLoggedIn ? 'text-danger' : 'text-muted'">
               <i :class="isLoggedIn ? 'fas fa-bookmark' : 'fas fa-lock'"></i>
@@ -63,10 +73,10 @@
             <h3 class="stat-number" v-if="isLoggedIn">{{ approvedBooks }}</h3>
             <h3 class="stat-number text-muted" v-else>—</h3>
             <p class="stat-label">
-              {{ isLoggedIn ? 'Số lượt mượn sách hiện tại' : 'Đăng nhập để xem' }}
+              {{ isLoggedIn ? 'Số lượt mượn sách' : 'Đăng nhập để xem' }}
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -140,6 +150,10 @@ export default {
       const authors = store.getters['author/allAuthors'];
       return Array.isArray(authors) ? authors.length : 0;
     });
+    const totalCategories = computed(() => {
+      const categories = store.getters['category/allCategories'];
+      return Array.isArray(categories) ? categories.length : 0;
+    });
 
     const approvedBooks = computed(() => {
       if (!isLoggedIn.value) return 0;
@@ -153,7 +167,8 @@ export default {
         await Promise.all([
           store.dispatch('book/fetchBooks'),
           store.dispatch('publisher/fetchPublishers'),
-          store.dispatch('author/fetchAuthors')
+          store.dispatch('author/fetchAuthors'),
+          store.dispatch('category/fetchCategories')
         ]);
 
         if (isLoggedIn.value) {
@@ -171,6 +186,7 @@ export default {
       totalBooks,
       totalPublishers,
       totalAuthors,
+      totalCategories,
       approvedBooks,
       isLoggedIn
     };

@@ -57,7 +57,7 @@
               type="text"
               class="form-control"
               v-model.trim="filters.diaChi"
-              placeholder="Nhập quốc tịch"
+              placeholder="Nhập địa chỉ"
             />
           </div>
 
