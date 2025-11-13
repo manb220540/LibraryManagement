@@ -158,7 +158,7 @@ const searchPublishersAdvanced = async (req, res) => {
       namMax,
       sortBy = 'tenNXB',
       order = 'ASC',
-      limit = 12,
+      limit = 100,
       page = 1
     } = req.query;
 
@@ -166,7 +166,7 @@ const searchPublishersAdvanced = async (req, res) => {
 
     logger.info('Searching publishers advanced', req.query);
 
-    // ---- 1. Gọi procedure để lấy @total ----
+    // ---- 1️⃣ Gọi procedure để tính tổng số bản ghi ----
     await sequelize.query(
       `CALL sp_tim_kiem_nha_xuat_ban_nang_cao(
         :tenNXB, :maNXB, :diaChi, :namMin, :namMax,
@@ -188,58 +188,62 @@ const searchPublishersAdvanced = async (req, res) => {
       }
     );
 
-    // ---- 2. Lấy @total ----
+    // ---- 2️⃣ Lấy @total từ procedure ----
     const [[{ total }]] = await sequelize.query('SELECT @total AS total');
 
-    // ---- 3. Lấy dữ liệu (raw query giống getAllPublishers) ----
-    // Tạo điều kiện WHERE
-const where = [];
-if (tenNXB) where.push(`nxb.tenNXB LIKE '%${tenNXB}%'`);
-if (maNXB) where.push(`nxb.maNXB = ${maNXB}`);
-if (diaChi) where.push(`nxb.diaChi LIKE '%${diaChi}%'`);
-if (namMin) where.push(`(s.namXuatBan >= ${namMin} OR s.namXuatBan IS NULL)`);
-if (namMax) where.push(`(s.namXuatBan <= ${namMax} OR s.namXuatBan IS NULL)`);
+    // ---- 3️⃣ Lấy dữ liệu hiển thị ----
+    const where = [];
+    if (tenNXB) where.push(`nxb.tenNXB LIKE '%${tenNXB}%'`);
+    if (maNXB) where.push(`nxb.maNXB = ${maNXB}`);
+    if (diaChi) where.push(`nxb.diaChi LIKE '%${diaChi}%'`);
+    if (namMin) where.push(`(s.namXuatBan >= ${namMin} OR s.namXuatBan IS NULL)`);
+    if (namMax) where.push(`(s.namXuatBan <= ${namMax} OR s.namXuatBan IS NULL)`);
 
-const whereClause = where.length ? 'WHERE ' + where.join(' AND ') : '';
+    const whereClause = where.length ? `WHERE ${where.join(' AND ')}` : '';
 
-const sql = `
-  SELECT 
-    nxb.*,
-    COALESCE((
-      SELECT JSON_ARRAYAGG(
-        JSON_OBJECT(
-          'maSach', s.maSach,
-          'tenSach', s.tenSach,
-          'namXuatBan', s.namXuatBan,
-          'soLuongHienCo', s.soLuongHienCo,
-          'donGia', s.donGia
-        )
-      )
-      FROM Sach s 
-      WHERE s.maNXB = nxb.maNXB
-    ), JSON_ARRAY()) AS Sach,
-    (
-      SELECT COUNT(*) 
-      FROM Sach s 
-      WHERE s.maNXB = nxb.maNXB
-    ) AS soLuongSach
-  FROM NhaXuatBan nxb
-  LEFT JOIN Sach s ON nxb.maNXB = s.maNXB
-  ${whereClause}
-  GROUP BY nxb.maNXB
-  ORDER BY nxb.${sortBy} ${order}
-  LIMIT ${limit} OFFSET ${offset};
-`;
-
+    const sql = `
+      SELECT 
+        nxb.*,
+        COALESCE((
+          SELECT JSON_ARRAYAGG(
+            JSON_OBJECT(
+              'maSach', s.maSach,
+              'tenSach', s.tenSach,
+              'namXuatBan', s.namXuatBan,
+              'soLuongHienCo', s.soLuongHienCo,
+              'donGia', s.donGia
+            )
+          )
+          FROM Sach s 
+          WHERE s.maNXB = nxb.maNXB
+        ), JSON_ARRAY()) AS Sach,
+        (
+          SELECT COUNT(*) 
+          FROM Sach s 
+          WHERE s.maNXB = nxb.maNXB
+        ) AS soLuongSach
+      FROM NhaXuatBan nxb
+      LEFT JOIN Sach s ON nxb.maNXB = s.maNXB
+      ${whereClause}
+      GROUP BY nxb.maNXB
+      ORDER BY nxb.${sortBy} ${order}
+      LIMIT ${limit} OFFSET ${offset};
+    `;
 
     const [data] = await sequelize.query(sql);
 
+    // ---- 4️⃣ Chuẩn hóa dữ liệu ----
     const publishers = data.map(pub => ({
       ...pub,
-      Sach: pub.Sach ? JSON.parse(pub.Sach) : [],
+      Sach: Array.isArray(pub.Sach)
+        ? pub.Sach
+        : typeof pub.Sach === 'string'
+        ? JSON.parse(pub.Sach)
+        : [],
       soLuongSach: parseInt(pub.soLuongSach) || 0
     }));
 
+    // ---- 5️⃣ Trả kết quả ----
     res.json({
       data: publishers,
       pagination: {
@@ -249,11 +253,14 @@ const sql = `
         totalPages: Math.ceil((total || 0) / limit)
       }
     });
+
   } catch (error) {
     logger.error('Search publishers advanced error', { error: error.message });
     res.status(500).json({ message: 'Lỗi tìm kiếm nhà xuất bản' });
   }
 };
+
+
 
 // Xuất các hàm để sử dụng trong file routes
 module.exports = {

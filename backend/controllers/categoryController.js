@@ -244,6 +244,7 @@ const searchCategoriesAdvanced = async (req, res) => {
 };
 
 
+
 module.exports = {
   getAllCategories,
   getCategoryById,

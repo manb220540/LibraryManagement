@@ -49,12 +49,12 @@
 
           <!-- Quốc tịch -->
           <div class="col-md-4">
-            <label class="form-label">Quốc tịch</label>
+            <label class="form-label">Địa chỉ</label>
             <input
               type="text"
               class="form-control"
-              v-model.trim="filters.quocTich"
-              placeholder="Nhập quốc tịch"
+              v-model.trim="filters.diaChi"
+              placeholder="Nhập địa chỉ"
             />
           </div>
 

@@ -21,15 +21,7 @@
             <p>Bạn muốn mượn các sách sau?</p>
             <ul>
               <li v-for="item in borrowCart" :key="item.maSach">
-                {{ item.tenSach }} - Số lượng:
-                <input
-                  type="number"
-                  v-model.number="item.soLuongSachMuon"
-                  :min="1"
-                  :max="item.soLuongHienCo"
-                  class="form-control d-inline-block w-auto"
-                  @input="validateQuantity(item)"
-                />
+                {{ item.tenSach }}
               </li>
             </ul>
           </div>
@@ -39,7 +31,7 @@
               type="button"
               class="btn btn-primary"
               @click="handleConfirmBorrow"
-              :disabled="loading || !isValidCart"
+              :disabled="loading || !borrowCart.length"
             >
               {{ loading ? 'Đang xử lý...' : 'Mượn sách' }}
             </button>
@@ -231,7 +223,6 @@
 import { ref, computed, watch, onMounted, getCurrentInstance } from 'vue';
 import { useStore } from 'vuex';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
-import { showError } from '@/utils/notifications';
 
 export default {
   name: 'BookList',
@@ -274,29 +265,23 @@ export default {
     const categories = computed(() => store.getters['category/allCategories'] || []);
     const books = computed(() => store.getters['book/allBooks'] || []);
 
-    // === Computed phân trang ===
     const currentPage = computed(() => Math.floor(pagination.value.offset / pagination.value.limit) + 1);
     const totalPages = computed(() => Math.ceil(pagination.value.total / pagination.value.limit) || 1);
 
-    // === Cart validation ===
-    const isValidCart = computed(() => {
-      return borrowCart.value.every(item =>
-        item.soLuongSachMuon > 0 && item.soLuongSachMuon <= item.soLuongHienCo
-      );
-    });
-
-    // === Hàm giỏ mượn ===
+    // === Giỏ mượn ===
     const isBookInCart = (bookId) => borrowCart.value.some(item => item.maSach === bookId);
 
     const addToBorrowCart = (book) => {
-      if (!isBookInCart(book.maSach) && book.soLuongHienCo > 0) {
-        borrowCart.value.push({ ...book, soLuongSachMuon: 1 });
+      if (isBookInCart(book.maSach)) {
+        proxy.$toast.show('Sách này đã có trong giỏ mượn!', 'info');
+        return;
       }
-    };
-
-    const validateQuantity = (item) => {
-      if (item.soLuongSachMuon < 1) item.soLuongSachMuon = 1;
-      if (item.soLuongSachMuon > item.soLuongHienCo) item.soLuongSachMuon = item.soLuongHienCo;
+      if (book.soLuongHienCo > 0) {
+        borrowCart.value.push({ ...book, soLuongSachMuon: 1 });
+        proxy.$toast.show('Đã thêm sách vào giỏ mượn!', 'success');
+      } else {
+        proxy.$toast.show('Sách này hiện đã hết!', 'warning');
+      }
     };
 
     const showBorrowCart = () => { showConfirmModal.value = true; };
@@ -310,12 +295,12 @@ export default {
         loading.value = true;
         const chiTiet = borrowCart.value.map(item => ({
           maSach: item.maSach,
-          soLuongSachMuon: item.soLuongSachMuon
+          soLuongSachMuon: 1
         }));
         await store.dispatch('borrow/createBorrowRequest', { chiTiet });
         proxy.$toast.show('Yêu cầu mượn sách đã được gửi!', 'success');
         closeConfirmModal();
-        applyFilters(); // Tải lại danh sách
+        applyFilters();
       } catch (err) {
         proxy.$toast.show(err.response?.data?.message || 'Có lỗi xảy ra', 'danger');
       } finally {
@@ -329,9 +314,7 @@ export default {
     };
 
     // === Tìm kiếm nâng cao ===
-    const toggleAdvancedSearch = () => {
-      showAdvancedSearch.value = !showAdvancedSearch.value;
-    };
+    const toggleAdvancedSearch = () => { showAdvancedSearch.value = !showAdvancedSearch.value; };
 
     const resetFilters = () => {
       filters.value = {
@@ -346,55 +329,32 @@ export default {
       };
       sortBy.value = 'tenSach-asc';
       pagination.value.offset = 0;
-      applyFilters(); // Gọi lại → không có params → lấy tất cả
+      applyFilters();
     };
 
     const applyFilters = async () => {
       loading.value = true;
       try {
-        // Tạo object params chỉ chứa các field có giá trị
         const params = {};
+        if (filters.value.tenSach?.trim()) params.tenSach = filters.value.tenSach.trim();
+        if (filters.value.maSach?.trim()) params.maSach = filters.value.maSach.trim();
+        if (filters.value.maTacGia) params.maTacGia = filters.value.maTacGia;
+        if (filters.value.maNXB) params.maNXB = filters.value.maNXB;
+        if (filters.value.maTheLoai) params.maTheLoai = filters.value.maTheLoai;
+        if (filters.value.namXuatBanMin) params.namXuatBanMin = filters.value.namXuatBanMin;
+        if (filters.value.namXuatBanMax) params.namXuatBanMax = filters.value.namXuatBanMax;
+        if (filters.value.nguonGoc?.trim()) params.nguonGoc = filters.value.nguonGoc.trim();
 
-        if (filters.value.tenSach?.trim()) {
-          params.tenSach = filters.value.tenSach.trim();
-        }
-        if (filters.value.maSach?.trim()) {
-          params.maSach = filters.value.maSach.trim();
-        }
-        if (filters.value.maTacGia !== null && filters.value.maTacGia !== undefined) {
-          params.maTacGia = filters.value.maTacGia;
-        }
-        if (filters.value.maNXB !== null && filters.value.maNXB !== undefined) {
-          params.maNXB = filters.value.maNXB;
-        }
-        if (filters.value.maTheLoai !== null && filters.value.maTheLoai !== undefined) {
-          params.maTheLoai = filters.value.maTheLoai;
-        }
-        if (filters.value.namXuatBanMin !== null && filters.value.namXuatBanMin !== '') {
-          params.namXuatBanMin = filters.value.namXuatBanMin;
-        }
-        if (filters.value.namXuatBanMax !== null && filters.value.namXuatBanMax !== '') {
-          params.namXuatBanMax = filters.value.namXuatBanMax;
-        }
-        if (filters.value.nguonGoc?.trim()) {
-          params.nguonGoc = filters.value.nguonGoc.trim();
-        }
-
-        // Luôn thêm sortBy, order, limit, offset
         const [field, dir] = sortBy.value.split('-');
         params.sortBy = field;
         params.order = dir.toUpperCase();
         params.limit = pagination.value.limit;
         params.offset = pagination.value.offset;
 
-        // Gọi API
         const result = await store.dispatch('book/fetchBooksAdvanced', params);
-
-        // Cập nhật phân trang
         pagination.value.total = result.total || 0;
       } catch (err) {
         error.value = 'Không thể tải danh sách sách';
-        console.error('applyFilters error:', err);
       } finally {
         loading.value = false;
       }
@@ -406,17 +366,11 @@ export default {
       applyFilters();
     };
 
-    // === Watch thay đổi bộ lọc ===
-    watch(
-      [filters, sortBy],
-      () => {
-        pagination.value.offset = 0;
-        applyFilters();
-      },
-      { deep: true }
-    );
+    watch([filters, sortBy], () => {
+      pagination.value.offset = 0;
+      applyFilters();
+    }, { deep: true });
 
-    // === Khởi tạo dữ liệu ===
     onMounted(async () => {
       try {
         await Promise.all([
@@ -424,13 +378,12 @@ export default {
           store.dispatch('publisher/fetchPublishers'),
           store.dispatch('category/fetchCategories')
         ]);
-        await applyFilters(); // Tải sách lần đầu
-      } catch (err) {
+        await applyFilters();
+      } catch {
         error.value = 'Không thể tải dữ liệu ban đầu';
       }
     });
 
-    // === Return ===
     return {
       books,
       loading,
@@ -446,10 +399,8 @@ export default {
       pagination,
       currentPage,
       totalPages,
-      isValidCart,
       isBookInCart,
       addToBorrowCart,
-      validateQuantity,
       showBorrowCart,
       closeConfirmModal,
       handleConfirmBorrow,

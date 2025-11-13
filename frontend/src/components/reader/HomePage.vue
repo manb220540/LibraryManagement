@@ -63,7 +63,7 @@
             <h3 class="stat-number" v-if="isLoggedIn">{{ approvedBooks }}</h3>
             <h3 class="stat-number text-muted" v-else>—</h3>
             <p class="stat-label">
-              {{ isLoggedIn ? 'Sách đã mượn' : 'Đăng nhập để xem' }}
+              {{ isLoggedIn ? 'Số lượt mượn sách hiện tại' : 'Đăng nhập để xem' }}
             </p>
           </div>
         </div>
