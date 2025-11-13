@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <div class="col-6 col-md-3">
+        <!-- <div class="col-6 col-md-3">
           <div class="stat-card">
             <div class="stat-icon text-warning">
               <i class="fas fa-building"></i>
@@ -43,7 +43,7 @@
             <h3 class="stat-number">{{ totalPublishers }}</h3>
             <p class="stat-label">Nhà xuất bản</p>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-6 col-md-3">
           <div class="stat-card">
@@ -65,9 +65,9 @@
           </div>
         </div>
 
-        <!-- <div class="col-6 col-md-3">
+        <div class="col-6 col-md-3">
           <div class="stat-card" :class="{ 'stat-card-locked': !isLoggedIn }">
-            <div class="stat-icon" :class="isLoggedIn ? 'text-danger' : 'text-muted'">
+            <div class="stat-icon" :class="isLoggedIn ? 'text-warning' : 'text-muted'">
               <i :class="isLoggedIn ? 'fas fa-bookmark' : 'fas fa-lock'"></i>
             </div>
             <h3 class="stat-number" v-if="isLoggedIn">{{ approvedBooks }}</h3>
@@ -76,7 +76,7 @@
               {{ isLoggedIn ? 'Số lượt mượn sách' : 'Đăng nhập để xem' }}
             </p>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
 
