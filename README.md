@@ -109,6 +109,13 @@ GRANT ALL PRIVILEGES ON library_db.* TO 'librarymanagement'@'127.0.0.1';
 FLUSH PRIVILEGES;
 ```
 
+#### 5.4. Cài đặt quyền SUPER:
+
+```bash
+-- Cấp toàn bộ quyền cho việc tạo procedure, function
+SET GLOBAL log_bin_trust_function_creators = 1;
+```
+
 ### 6. Khởi tạo Bảng và Dữ liệu Mặc định
 
 Sử dụng Sequelize-CLI để chạy các migrations (tạo bảng, func, procedure) và thêm dữ liệu người dùng Admin mặc định.
