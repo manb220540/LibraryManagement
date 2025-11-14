@@ -6,6 +6,9 @@
       <div class="card-header">
         <h2 class="card-title">Đặt lại mật khẩu</h2>
         <p class="card-subtitle">Nhập email để nhận hướng dẫn đặt lại mật khẩu</p>
+
+        <!-- Space giữ layout giống Login (không ảnh hưởng hệ thống) -->
+        <div class="user-type-toggle placeholder-toggle"></div>
       </div>
 
       <div class="card-body">
@@ -52,9 +55,16 @@
           </button>
         </form>
       </div>
+
+      <div class="card-footer">
+        <p class="footer-text">
+          <router-link to="/login" class="footer-link">← Quay lại đăng nhập</router-link>
+        </p>
+      </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import { ref } from 'vue';
@@ -180,23 +190,31 @@ export default {
 }
 
 .card-title {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.75rem;
   font-size: 1.75rem;
   font-weight: 700;
   color: #5a4a6a;
 }
 
 .card-subtitle {
-  margin: 0;
+  margin: 0 0 1rem;
   font-size: 0.95rem;
   color: #8b7a9a;
   font-weight: 500;
+}
+
+/* Placeholder toggle để giữ layout giống Login (không hiển thị) */
+.placeholder-toggle {
+  height: 0;
+  margin-top: 1rem;
+  visibility: hidden;
 }
 
 .card-body {
   padding: 2rem;
 }
 
+/* ALERT (copy từ login) */
 .alert {
   padding: 1rem;
   border-radius: 12px;
@@ -206,14 +224,8 @@ export default {
 }
 
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .alert-danger {
@@ -236,17 +248,11 @@ export default {
   border: none;
   font-size: 1.25rem;
   cursor: pointer;
-  color: inherit;
   opacity: 0.6;
-  padding: 0;
-  width: 24px;
-  height: 24px;
 }
+.btn-close:hover { opacity: 1; }
 
-.btn-close:hover {
-  opacity: 1;
-}
-
+/* FORM */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -260,10 +266,7 @@ export default {
   font-size: 0.95rem;
 }
 
-.required {
-  color: #e53e3e;
-  margin-left: 0.25rem;
-}
+.required { color: #e53e3e; margin-left: 0.25rem; }
 
 .form-input {
   width: 100%;
@@ -286,19 +289,16 @@ export default {
   border-color: #fc8181;
 }
 
-.form-input::placeholder {
-  color: #a0aec0;
-}
-
 .error-message {
+  margin-top: 0.5rem;
+  color: #e53e3e;
+  font-size: 0.875rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #e53e3e;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
 }
 
+/* BUTTON */
 .btn-submit {
   width: 100%;
   padding: 1rem;
@@ -311,7 +311,6 @@ export default {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-top: 0.5rem;
 }
 
 .btn-submit:hover:not(:disabled) {
@@ -319,15 +318,12 @@ export default {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.btn-submit:active:not(:disabled) {
-  transform: translateY(0);
-}
-
 .btn-submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
+/* FOOTER */
 .card-footer {
   padding: 1.5rem 2rem;
   background: rgba(241, 226, 160, 0.15);
@@ -335,22 +331,20 @@ export default {
   border-top: 1px solid rgba(211, 196, 225, 0.3);
 }
 
-@media (max-width: 480px) {
-  .login-card {
-    border-radius: 16px;
-  }
-  .card-header,
-  .card-body,
-  .card-footer {
-    padding: 1.5rem;
-  }
-  
-  .card-title {
-    font-size: 1.5rem;
-  }
+.footer-text {
+  margin: 0;
+  color: #6b5b7b;
+  font-size: 0.95rem;
+}
 
-  .card-subtitle {
-    font-size: 0.85rem;
-  }
+.footer-link {
+  color: #8b7a9a;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-link:hover {
+  color: #6b5b7b;
+  text-decoration: underline;
 }
 </style>

@@ -223,7 +223,139 @@
 </template>
 
 <script>
-import { ref, computed, watch, onMounted } from "vue";
+// import { ref, computed, watch, onMounted } from "vue";
+// import { useStore } from "vuex";
+// import LoadingSpinner from "@/components/LoadingSpinner.vue";
+// import { showError } from "@/utils/notifications";
+
+// export default {
+//   name: "AuthorList",
+//   components: { LoadingSpinner },
+//   setup() {
+//     const store = useStore();
+//     const loading = ref(false);
+//     const error = ref(null);
+//     const showAdvancedSearch = ref(false);
+//     const showBooksModal = ref(false);
+//     const selectedAuthor = ref(null);
+
+//     const filters = ref({
+//       tenTacGia: "",
+//       maTacGia: null,
+//       quocTich: "",
+//       namMin: null,
+//       namMax: null,
+//     });
+//     const sortBy = ref("tenTacGia-asc");
+
+//     const pagination = ref({
+//       total: 0,
+//       limit: 12,
+//       page: 1,
+//       totalPages: 1,
+//     });
+
+//     const authors = computed(() => store.getters["author/allAuthors"] || []);
+//     const selectedAuthorBooks = computed(() => selectedAuthor.value?.Sach || []);
+//     const totalPages = computed(() => pagination.value.totalPages || 1);
+
+//     const toggleAdvancedSearch = () => {
+//       showAdvancedSearch.value = !showAdvancedSearch.value;
+//     };
+
+//     const resetFilters = () => {
+//       filters.value = { tenTacGia: "", maTacGia: null, quocTich: "", namMin: null, namMax: null };
+//       sortBy.value = "tenTacGia-asc";
+//       pagination.value.page = 1;
+//       applyFilters();
+//     };
+
+//     const applyFilters = async () => {
+//       loading.value = true;
+//       try {
+//         const hasFilter = Object.values(filters.value).some(
+//           (v) => v !== null && v !== "" && v !== undefined
+//         );
+
+//         const [field, dir] = sortBy.value.split("-");
+//         const params = {
+//           ...filters.value,
+//           sortBy: field,
+//           order: dir.toUpperCase(),
+//           limit: pagination.value.limit,
+//           page: pagination.value.page,
+//         };
+
+//         const result = hasFilter
+//           ? await store.dispatch("author/searchAuthors", params)
+//           : await store.dispatch("author/fetchAuthors");
+
+//         pagination.value.total = result?.total || result?.pagination?.total || 0;
+//         pagination.value.totalPages =
+//           result?.totalPages || result?.pagination?.totalPages || 1;
+//       } catch (err) {
+//         error.value = "Không thể tải danh sách tác giả";
+//         showError(err.response?.data?.message || err.message);
+//       } finally {
+//         loading.value = false;
+//       }
+//     };
+
+//     const changePage = (page) => {
+//       if (page < 1 || page > totalPages.value) return;
+//       pagination.value.page = page;
+//       applyFilters();
+//     };
+
+//     const showAuthorBooks = (author) => {
+//       selectedAuthor.value = author;
+//       showBooksModal.value = true;
+//     };
+
+//     const closeBooksModal = () => {
+//       selectedAuthor.value = null;
+//       showBooksModal.value = false;
+//     };
+
+//     const clearError = () => {
+//       error.value = null;
+//       store.commit("author/SET_ERROR", null);
+//     };
+
+//     const formatCurrency = (val) =>
+//       new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(val || 0);
+
+//     watch([filters, sortBy], () => {
+//       pagination.value.page = 1;
+//       applyFilters();
+//     }, { deep: true });
+
+//     onMounted(() => applyFilters());
+
+//     return {
+//       loading,
+//       error,
+//       showAdvancedSearch,
+//       filters,
+//       sortBy,
+//       pagination,
+//       authors,
+//       totalPages,
+//       showBooksModal,
+//       selectedAuthor,
+//       selectedAuthorBooks,
+//       toggleAdvancedSearch,
+//       resetFilters,
+//       applyFilters,
+//       changePage,
+//       showAuthorBooks,
+//       closeBooksModal,
+//       clearError,
+//       formatCurrency,
+//     };
+//   },
+// };
+import { ref, computed, onMounted, watch } from "vue";
 import { useStore } from "vuex";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 import { showError } from "@/utils/notifications";
@@ -231,53 +363,65 @@ import { showError } from "@/utils/notifications";
 export default {
   name: "AuthorList",
   components: { LoadingSpinner },
+
   setup() {
     const store = useStore();
     const loading = ref(false);
     const error = ref(null);
-    const showAdvancedSearch = ref(false);
-    const showBooksModal = ref(false);
-    const selectedAuthor = ref(null);
 
+    const showAdvancedSearch = ref(false);
+
+    // Bộ lọc
     const filters = ref({
       tenTacGia: "",
       maTacGia: null,
-      quocTich: "",
+      diaChi: "",
       namMin: null,
       namMax: null,
     });
+
+    // Sắp xếp
     const sortBy = ref("tenTacGia-asc");
 
+    // Phân trang
     const pagination = ref({
       total: 0,
-      limit: 12,
+      limit: 9,
       page: 1,
       totalPages: 1,
     });
 
-    const authors = computed(() => store.getters["author/allAuthors"] || []);
+    const authors = computed(() => store.getters["author/allAuthors"]);
+    const totalPages = computed(() => pagination.value.totalPages);
+
+    const selectedAuthor = ref(null);
+    const showBooksModal = ref(false);
     const selectedAuthorBooks = computed(() => selectedAuthor.value?.Sach || []);
-    const totalPages = computed(() => pagination.value.totalPages || 1);
 
     const toggleAdvancedSearch = () => {
       showAdvancedSearch.value = !showAdvancedSearch.value;
     };
 
     const resetFilters = () => {
-      filters.value = { tenTacGia: "", maTacGia: null, quocTich: "", namMin: null, namMax: null };
+      filters.value = {
+        tenTacGia: "",
+        maTacGia: null,
+        diaChi: "",
+        namMin: null,
+        namMax: null,
+      };
       sortBy.value = "tenTacGia-asc";
       pagination.value.page = 1;
       applyFilters();
     };
 
+    // 📌 API loading
     const applyFilters = async () => {
       loading.value = true;
-      try {
-        const hasFilter = Object.values(filters.value).some(
-          (v) => v !== null && v !== "" && v !== undefined
-        );
 
+      try {
         const [field, dir] = sortBy.value.split("-");
+
         const params = {
           ...filters.value,
           sortBy: field,
@@ -286,16 +430,14 @@ export default {
           page: pagination.value.page,
         };
 
-        const result = hasFilter
-          ? await store.dispatch("author/searchAuthors", params)
-          : await store.dispatch("author/fetchAuthors");
+        const result = await store.dispatch("author/searchAuthors", params);
 
-        pagination.value.total = result?.total || result?.pagination?.total || 0;
+        pagination.value.total = result.total || 0;
         pagination.value.totalPages =
-          result?.totalPages || result?.pagination?.totalPages || 1;
+          Math.ceil(result.total / pagination.value.limit) || 1;
       } catch (err) {
-        error.value = "Không thể tải danh sách tác giả";
         showError(err.response?.data?.message || err.message);
+        error.value = "Không thể tải danh sách tác giả";
       } finally {
         loading.value = false;
       }
@@ -313,37 +455,34 @@ export default {
     };
 
     const closeBooksModal = () => {
-      selectedAuthor.value = null;
       showBooksModal.value = false;
+      selectedAuthor.value = null;
     };
 
-    const clearError = () => {
-      error.value = null;
-      store.commit("author/SET_ERROR", null);
-    };
+    const clearError = () => (error.value = null);
 
-    const formatCurrency = (val) =>
-      new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(val || 0);
-
+    // 🟩 ***QUAN TRỌNG*** — Sorting hoạt động không cần nhập filters
     watch([filters, sortBy], () => {
       pagination.value.page = 1;
       applyFilters();
     }, { deep: true });
 
-    onMounted(() => applyFilters());
+    onMounted(() => {
+      applyFilters();
+    });
 
     return {
       loading,
       error,
-      showAdvancedSearch,
       filters,
       sortBy,
-      pagination,
       authors,
+      showAdvancedSearch,
+      pagination,
       totalPages,
-      showBooksModal,
       selectedAuthor,
       selectedAuthorBooks,
+      showBooksModal,
       toggleAdvancedSearch,
       resetFilters,
       applyFilters,
@@ -351,7 +490,6 @@ export default {
       showAuthorBooks,
       closeBooksModal,
       clearError,
-      formatCurrency,
     };
   },
 };
