@@ -31,14 +31,14 @@ const sendVerificationEmail = async (email, otp) => {
   const mailOptions = {
     from: process.env.EMAIL_USER, // Địa chỉ email người gửi
     to: email, // Địa chỉ email người nhận
-    subject: 'Xác nhận đổi mật khẩu - Thư viện TM', // Chủ đề email
+    subject: 'Xác nhận đổi mật khẩu - Thư viện CTU', // Chủ đề email
     html: `
       <h3>Xin chào,</h3>
       <p>Chúng tôi đã nhận được yêu cầu đổi mật khẩu cho tài khoản của bạn. Dưới đây là mã xác nhận (OTP) để hoàn tất quá trình:</p>
       <h2 style="color: #0d6efd">${otp}</h2> <!-- Hiển thị mã OTP -->
       <p>Vui lòng nhập mã này vào trang xác nhận để tiếp tục. Mã có hiệu lực trong 10 phút.</p>
       <p>Nếu bạn không yêu cầu đổi mật khẩu, vui lòng bỏ qua email này hoặc liên hệ với chúng tôi.</p>
-      <p>Trân trọng,<br>Đội ngũ Thư viện sách TM</p>
+      <p>Trân trọng,<br>Đội ngũ Thư viện sách CTU</p>
     `, // Nội dung email dạng HTML
   };
 
