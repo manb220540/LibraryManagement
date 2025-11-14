@@ -153,6 +153,7 @@
           </div>
         </div>
       </div>
+    
     </div>
   </div>
 </template>
@@ -262,6 +263,8 @@ export default {
     onMounted(() => {
       applyFilters();
     });
+    
+
 
     return {
       loading,

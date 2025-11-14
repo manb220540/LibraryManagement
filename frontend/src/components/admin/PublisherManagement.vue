@@ -322,13 +322,46 @@ export default {
       applyFilters();
     };
 
+    // const applyFilters = async () => {
+    //   loading.value = true;
+    //   try {
+    //     const hasFilter = Object.values(filters.value).some(
+    //       (v) => v !== null && v !== "" && v !== undefined
+    //     );
+    //     const [field, dir] = sortBy.value.split("-");
+    //     const params = {
+    //       ...filters.value,
+    //       sortBy: field,
+    //       order: dir.toUpperCase(),
+    //       limit: pagination.value.limit,
+    //       page: pagination.value.page,
+    //     };
+    //     const result = hasFilter
+    //       ? await store.dispatch("publisher/searchPublishers", params)
+    //       : await store.dispatch("publisher/fetchPublishers");
+
+    //     if (result.pagination) {
+    //       pagination.value = {
+    //         ...pagination.value,
+    //         total: result.pagination.total,
+    //         page: result.pagination.page,
+    //         totalPages: result.pagination.totalPages,
+    //       };
+    //     } else {
+    //       pagination.value.total = publishers.value.length;
+    //       pagination.value.totalPages = 1;
+    //     }
+    //   } catch (err) {
+    //     showError("Lỗi tải danh sách NXB: " + (err.response?.data?.message || err.message));
+    //   } finally {
+    //     loading.value = false;
+    //   }
+    // };
     const applyFilters = async () => {
       loading.value = true;
       try {
-        const hasFilter = Object.values(filters.value).some(
-          (v) => v !== null && v !== "" && v !== undefined
-        );
         const [field, dir] = sortBy.value.split("-");
+
         const params = {
           ...filters.value,
           sortBy: field,
@@ -336,9 +369,9 @@ export default {
           limit: pagination.value.limit,
           page: pagination.value.page,
         };
-        const result = hasFilter
-          ? await store.dispatch("publisher/searchPublishers", params)
-          : await store.dispatch("publisher/fetchPublishers");
+
+        // LUÔN gọi searchPublishers — giống PublisherList
+        const result = await store.dispatch("publisher/searchPublishers", params);
 
         if (result.pagination) {
           pagination.value = {
@@ -357,6 +390,7 @@ export default {
         loading.value = false;
       }
     };
+
 
     const changePage = (page) => {
       if (page < 1 || page > totalPages.value) return;
@@ -460,10 +494,20 @@ export default {
     const formatCurrency = (val) =>
       new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(val || 0);
 
+    // watch([filters, sortBy], () => {
+    //   pagination.value.page = 1;
+    //   applyFilters();
+    // }, { deep: true });
+    let filterTimer = null;
+
     watch([filters, sortBy], () => {
+      clearTimeout(filterTimer);
       pagination.value.page = 1;
-      applyFilters();
+      filterTimer = setTimeout(() => {
+        applyFilters();
+      }, 300);
     }, { deep: true });
+
 
     onMounted(() => applyFilters());
 

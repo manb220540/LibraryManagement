@@ -108,6 +108,7 @@
               <!-- Nút điều khiển -->
               <div class="col-12 text-end mt-3">
                 <button class="btn btn-outline-secondary me-2" @click="resetFilters">Xóa bộ lọc</button>
+                <button class="btn btn-primary" @click="applyFilters">Áp dụng</button>
               </div>
             </div>
           </div>

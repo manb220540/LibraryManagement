@@ -343,6 +343,12 @@ export default {
     const clearError = () => store.commit('category/SET_ERROR', null);
     const formatCurrency = val => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(val || 0);
     
+    // === Watch ===
+    watch([filters, sortBy], () => {
+      pagination.value.page = 1;
+      applyFilters();
+    }, { deep: true });
+    
     // Sửa lỗi: Gọi fetchData lần đầu khi component được mount
     onMounted(fetchData); 
 
