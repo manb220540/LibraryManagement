@@ -166,7 +166,7 @@ const searchPublishersAdvanced = async (req, res) => {
 
     logger.info('Searching publishers advanced', req.query);
 
-    // ---- 1️⃣ Gọi procedure để tính tổng số bản ghi ----
+    // ---- Gọi procedure để tính tổng số bản ghi ----
     await sequelize.query(
       `CALL sp_tim_kiem_nha_xuat_ban_nang_cao(
         :tenNXB, :maNXB, :diaChi, :namMin, :namMax,
@@ -188,10 +188,10 @@ const searchPublishersAdvanced = async (req, res) => {
       }
     );
 
-    // ---- 2️⃣ Lấy @total từ procedure ----
+    // ---- Lấy @total từ procedure ----
     const [[{ total }]] = await sequelize.query('SELECT @total AS total');
 
-    // ---- 3️⃣ Lấy dữ liệu hiển thị ----
+    // ---- Lấy dữ liệu hiển thị ----
     const where = [];
     if (tenNXB) where.push(`nxb.tenNXB LIKE '%${tenNXB}%'`);
     if (maNXB) where.push(`nxb.maNXB = ${maNXB}`);
@@ -243,7 +243,7 @@ const searchPublishersAdvanced = async (req, res) => {
       soLuongSach: parseInt(pub.soLuongSach) || 0
     }));
 
-    // ---- 5️⃣ Trả kết quả ----
+    // ---- Trả kết quả ----
     res.json({
       data: publishers,
       pagination: {
